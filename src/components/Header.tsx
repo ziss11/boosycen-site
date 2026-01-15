@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -34,9 +35,18 @@ export default function Header() {
         {/* Logo */}
         <Link
           href='/'
-          className='text-2xl font-bold font-serif hover:text-accent-primary transition-colors'
+          className='flex items-center gap-2 hover:opacity-80 transition-opacity'
         >
-          Griselda<span className='text-accent-primary'>.</span>
+          <Image
+            src='/logo.png'
+            alt='Griselda Logo'
+            width={40}
+            height={40}
+            className='rounded-lg'
+          />
+          <span className='text-xl font-bold font-serif'>
+            Griselda<span className='text-accent-primary'>.</span>
+          </span>
         </Link>
 
         {/* Desktop Navigation */}

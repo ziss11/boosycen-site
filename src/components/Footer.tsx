@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 const footerLinks = [
@@ -18,9 +19,18 @@ export default function Footer() {
           <div className='space-y-4'>
             <Link
               href='/'
-              className='text-2xl font-bold font-serif'
+              className='flex items-center gap-2'
             >
-              Griselda<span className='text-accent-primary'>.</span>
+              <Image
+                src='/logo.png'
+                alt='Griselda Logo'
+                width={36}
+                height={36}
+                className='rounded-lg'
+              />
+              <span className='text-2xl font-bold font-serif'>
+                Griselda<span className='text-accent-primary'>.</span>
+              </span>
             </Link>
             <p className='text-gray-400 max-w-xs'>
               Crafting intuitive digital experiences through thoughtful UI/UX
