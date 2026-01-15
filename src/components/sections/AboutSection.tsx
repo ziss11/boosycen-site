@@ -16,7 +16,7 @@ export default function AboutSection() {
   return (
     <section
       id='about'
-      className='section bg-[var(--background)]'
+      className='section bg-background'
     >
       <div className='container'>
         <div className='grid lg:grid-cols-2 gap-16 items-center'>
@@ -24,19 +24,19 @@ export default function AboutSection() {
           <ScrollReveal animation='slide-left'>
             <div className='relative'>
               {/* Main Image Container */}
-              <div className='relative w-full aspect-[4/5] max-w-md mx-auto rounded-[var(--radius-xl)] bg-gradient-to-br from-[var(--pastel-lavender)] to-[var(--pastel-pink)] shadow-[var(--clay-shadow)] overflow-hidden'>
+              <div className='relative w-full aspect-[4/5] max-w-md mx-auto rounded-xl bg-gradient-to-br from-pastel-lavender to-pastel-pink shadow-lg overflow-hidden'>
                 {/* Placeholder for portrait - could add real image */}
                 <div className='absolute inset-0 flex items-center justify-center'>
                   <div className='text-center space-y-4'>
                     <div className='text-9xl opacity-80'>👩‍💻</div>
-                    <p className='text-lg font-medium text-[var(--foreground)] opacity-60'>
+                    <p className='text-lg font-medium text-foreground/60'>
                       Your Photo Here
                     </p>
                   </div>
                 </div>
 
                 {/* Decorative gradient overlay */}
-                <div className='absolute inset-0 bg-gradient-to-t from-[rgba(255,255,255,0.3)] to-transparent' />
+                <div className='absolute inset-0 bg-gradient-to-t from-white/30 to-transparent' />
               </div>
 
               {/* Floating decorations */}
@@ -62,12 +62,12 @@ export default function AboutSection() {
           {/* Content */}
           <div className='space-y-8'>
             <ScrollReveal animation='fade-up'>
-              <span className='inline-block px-4 py-2 rounded-full bg-[rgba(139,124,255,0.1)] text-[var(--accent-primary)] font-medium text-sm mb-4'>
+              <span className='inline-block px-4 py-2 rounded-full bg-accent-primary/10 text-accent-primary font-medium text-sm mb-4'>
                 About Me
               </span>
               <h2 className='heading-lg mb-6'>
                 Designing with{' '}
-                <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] bg-clip-text text-transparent'>
+                <span className='bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
                   Purpose & Empathy
                 </span>
               </h2>
@@ -110,7 +110,7 @@ export default function AboutSection() {
                   {skills.map((skill, index) => (
                     <div
                       key={skill.name}
-                      className='flex items-center gap-3 p-3 rounded-[var(--radius-sm)] bg-[rgba(255,255,255,0.5)] hover:bg-[rgba(255,255,255,0.8)] transition-all hover:shadow-md'
+                      className='flex items-center gap-3 p-3 rounded-sm bg-white/50 hover:bg-white/80 transition-all hover:shadow-md'
                       style={{ animationDelay: `${index * 50}ms` }}
                     >
                       <Clay3DIcon
@@ -137,7 +137,7 @@ export default function AboutSection() {
                   {tools.map((tool) => (
                     <span
                       key={tool}
-                      className='px-4 py-2 rounded-full bg-[rgba(139,124,255,0.1)] text-sm font-medium hover:bg-[rgba(139,124,255,0.2)] transition-colors cursor-default'
+                      className='px-4 py-2 rounded-full bg-accent-primary/10 text-sm font-medium hover:bg-accent-primary/20 transition-colors cursor-default'
                     >
                       {tool}
                     </span>

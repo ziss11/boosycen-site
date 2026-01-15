@@ -32,17 +32,17 @@ export default function ContactSection() {
   return (
     <section
       id='contact'
-      className='section bg-gradient-to-b from-[rgba(224,214,255,0.1)] to-[var(--background)]'
+      className='section bg-gradient-to-b from-pastel-lavender/10 to-background'
     >
       <div className='container'>
         <div className='max-w-2xl mx-auto text-center'>
           <ScrollReveal animation='fade-up'>
-            <span className='inline-block px-4 py-2 rounded-full bg-[rgba(139,124,255,0.1)] text-[var(--accent-primary)] font-medium text-sm mb-4'>
+            <span className='inline-block px-4 py-2 rounded-full bg-accent-primary/10 text-accent-primary font-medium text-sm mb-4'>
               Get In Touch
             </span>
             <h2 className='heading-lg mb-4'>
               Let&apos;s Create Something{' '}
-              <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] bg-clip-text text-transparent'>
+              <span className='bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
                 Amazing
               </span>{' '}
               Together
@@ -63,7 +63,7 @@ export default function ContactSection() {
               <h3 className='font-semibold mb-2'>Email me at</h3>
               <a
                 href='mailto:griselda@designer.com'
-                className='text-2xl text-[var(--accent-primary)] hover:underline font-medium'
+                className='text-2xl text-accent-primary hover:underline font-medium'
               >
                 griselda@designer.com
               </a>
@@ -84,7 +84,7 @@ export default function ContactSection() {
                     href={link.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='group flex items-center gap-3 p-4 rounded-[var(--radius-md)] bg-[rgba(255,255,255,0.5)] hover:bg-[rgba(255,255,255,0.8)] transition-all hover:shadow-[var(--clay-shadow)] hover:-translate-y-1'
+                    className='group flex items-center gap-3 p-4 rounded-lg bg-white/50 hover:bg-white/80 transition-all hover:shadow-lg hover:-translate-y-1'
                   >
                     <Clay3DIcon
                       gradient={link.gradient}
@@ -92,7 +92,7 @@ export default function ContactSection() {
                     >
                       <span className='text-sm'>{link.icon}</span>
                     </Clay3DIcon>
-                    <span className='font-medium group-hover:text-[var(--accent-primary)] transition-colors'>
+                    <span className='font-medium group-hover:text-accent-primary transition-colors'>
                       {link.name}
                     </span>
                   </a>

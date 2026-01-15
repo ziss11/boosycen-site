@@ -9,11 +9,11 @@ interface Clay3DIconProps {
 }
 
 const gradients = {
-  lavender: 'from-[var(--pastel-lavender)] to-[var(--pastel-pink)]',
-  pink: 'from-[var(--pastel-pink)] to-[var(--pastel-peach)]',
-  mint: 'from-[var(--pastel-mint)] to-[var(--pastel-sky)]',
-  peach: 'from-[var(--pastel-peach)] to-[var(--pastel-cream)]',
-  sky: 'from-[var(--pastel-sky)] to-[var(--pastel-lavender)]',
+  lavender: 'from-pastel-lavender to-pastel-pink',
+  pink: 'from-pastel-pink to-pastel-peach',
+  mint: 'from-pastel-mint to-pastel-sky',
+  peach: 'from-pastel-peach to-pastel-cream',
+  sky: 'from-pastel-sky to-pastel-lavender',
 };
 
 const sizes = {
@@ -35,10 +35,10 @@ export default function Clay3DIcon({
       className={`
         inline-flex items-center justify-center
         bg-gradient-to-br ${gradients[gradient]}
-        rounded-[var(--radius-md)]
-        shadow-[var(--clay-shadow-sm)]
+        rounded-md
+        shadow-md
         transition-all duration-300
-        hover:shadow-[var(--clay-shadow)]
+        hover:shadow-lg
         hover:scale-105
         ${sizes[size]}
         ${floating ? 'animate-float' : ''}

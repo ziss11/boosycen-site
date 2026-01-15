@@ -6,7 +6,7 @@ export default function WorkSection() {
   return (
     <section
       id='work'
-      className='section bg-gradient-to-b from-[var(--background)] to-[rgba(224,214,255,0.1)]'
+      className='section bg-gradient-to-b from-background to-pastel-lavender/10'
     >
       <div className='container'>
         {/* Section Header */}
@@ -14,12 +14,12 @@ export default function WorkSection() {
           animation='fade-up'
           className='text-center max-w-2xl mx-auto mb-16'
         >
-          <span className='inline-block px-4 py-2 rounded-full bg-[rgba(139,124,255,0.1)] text-[var(--accent-primary)] font-medium text-sm mb-4'>
+          <span className='inline-block px-4 py-2 rounded-full bg-accent-primary/10 text-accent-primary font-medium text-sm mb-4'>
             Featured Work
           </span>
           <h2 className='heading-lg mb-4'>
             Selected{' '}
-            <span className='bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] bg-clip-text text-transparent'>
+            <span className='bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
               Projects
             </span>
           </h2>
@@ -57,7 +57,7 @@ export default function WorkSection() {
               href='https://dribbble.com'
               target='_blank'
               rel='noopener noreferrer'
-              className='text-[var(--accent-primary)] font-medium hover:underline'
+              className='text-accent-primary font-medium hover:underline'
             >
               Check out my Dribbble →
             </a>

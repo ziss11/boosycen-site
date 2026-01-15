@@ -52,18 +52,29 @@
 
 /* Tailwind Theme Integration */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-pastel-pink: var(--pastel-pink);
-  --color-pastel-lavender: var(--pastel-lavender);
-  --color-pastel-mint: var(--pastel-mint);
-  --color-pastel-peach: var(--pastel-peach);
-  --color-pastel-sky: var(--pastel-sky);
-  --color-pastel-cream: var(--pastel-cream);
-  --color-accent-primary: var(--accent-primary);
-  --color-accent-secondary: var(--accent-secondary);
+  /* Colors */
+  --color-background: #faf8f5;
+  --color-foreground: #2d2d2d;
+  --color-pastel-pink: #ffd6e0;
+  --color-pastel-lavender: #e0d6ff;
+  --color-pastel-mint: #d6fff0;
+  --color-pastel-peach: #ffe8d6;
+  --color-pastel-sky: #d6f0ff;
+  --color-pastel-cream: #fff8e8;
+  --color-accent-primary: #8b7cff;
+  --color-accent-secondary: #ff7cb5;
+  --color-accent-tertiary: #7cffb5;
+  --color-muted: rgba(45, 45, 45, 0.7);
+
+  /* Fonts */
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
+
+  /* Border Radius */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-xl: 48px;
 }
 
 /* ========================================

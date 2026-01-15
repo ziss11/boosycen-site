@@ -11,16 +11,16 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className='bg-[var(--foreground)] text-white py-16'>
+    <footer className='bg-foreground text-white py-16'>
       <div className='container'>
         <div className='grid md:grid-cols-3 gap-12 mb-12'>
           {/* Brand */}
           <div className='space-y-4'>
             <Link
               href='/'
-              className='text-2xl font-bold font-[family-name:var(--font-playfair)]'
+              className='text-2xl font-bold font-serif'
             >
-              Griselda<span className='text-[var(--accent-primary)]'>.</span>
+              Griselda<span className='text-accent-primary'>.</span>
             </Link>
             <p className='text-gray-400 max-w-xs'>
               Crafting intuitive digital experiences through thoughtful UI/UX
@@ -50,7 +50,7 @@ export default function Footer() {
             <div className='space-y-2'>
               <a
                 href='mailto:griselda@designer.com'
-                className='block text-gray-400 hover:text-[var(--accent-primary)] transition-colors'
+                className='block text-gray-400 hover:text-accent-primary transition-colors'
               >
                 griselda@designer.com
               </a>

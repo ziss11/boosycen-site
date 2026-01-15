@@ -22,27 +22,27 @@ export default function Button({
 }: ButtonProps) {
   const baseStyles = `
     inline-flex items-center justify-center gap-2
-    font-semibold rounded-[var(--radius-md)]
+    font-semibold rounded-md
     transition-all duration-300 ease-out
     transform hover:-translate-y-1 hover:scale-[1.03]
     active:translate-y-0.5 active:scale-[0.98]
-    focus:outline-none focus:ring-4 focus:ring-[rgba(139,124,255,0.2)]
+    focus:outline-none focus:ring-4 focus:ring-accent-primary/20
   `;
 
   const variants = {
     primary: `
-      bg-gradient-to-br from-[var(--accent-primary)] to-[#7c6cef]
+      bg-gradient-to-br from-accent-primary to-[#7c6cef]
       text-white
-      shadow-[var(--clay-shadow-sm)]
-      hover:shadow-[var(--clay-shadow)]
+      shadow-md
+      hover:shadow-lg
     `,
     secondary: `
-      bg-gradient-to-br from-white to-[#f5f5f5]
-      text-[var(--foreground)]
-      border-2 border-[rgba(139,124,255,0.3)]
-      shadow-[var(--clay-shadow-sm)]
-      hover:shadow-[var(--clay-shadow)]
-      hover:border-[var(--accent-primary)]
+      bg-gradient-to-br from-white to-gray-50
+      text-foreground
+      border-2 border-accent-primary/30
+      shadow-md
+      hover:shadow-lg
+      hover:border-accent-primary
     `,
   };
 

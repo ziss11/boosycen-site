@@ -26,7 +26,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-[rgba(250,248,245,0.95)] backdrop-blur-md shadow-lg py-4'
+          ? 'bg-background/95 backdrop-blur-md shadow-lg py-4'
           : 'bg-transparent py-6'
       }`}
     >
@@ -34,9 +34,9 @@ export default function Header() {
         {/* Logo */}
         <Link
           href='/'
-          className='text-2xl font-bold font-[family-name:var(--font-playfair)] hover:text-[var(--accent-primary)] transition-colors'
+          className='text-2xl font-bold font-serif hover:text-accent-primary transition-colors'
         >
-          Griselda<span className='text-[var(--accent-primary)]'>.</span>
+          Griselda<span className='text-accent-primary'>.</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -45,10 +45,10 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className='relative text-[var(--foreground)] hover:text-[var(--accent-primary)] transition-colors font-medium group'
+              className='relative text-foreground hover:text-accent-primary transition-colors font-medium group'
             >
               {link.label}
-              <span className='absolute bottom-[-4px] left-0 w-0 h-[2px] bg-[var(--accent-primary)] transition-all duration-300 group-hover:w-full' />
+              <span className='absolute bottom-[-4px] left-0 w-0 h-[2px] bg-accent-primary transition-all duration-300 group-hover:w-full' />
             </Link>
           ))}
         </nav>
@@ -60,17 +60,17 @@ export default function Header() {
           aria-label='Toggle menu'
         >
           <span
-            className={`w-6 h-0.5 bg-[var(--foreground)] transition-all duration-300 ${
+            className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${
               isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
             }`}
           />
           <span
-            className={`w-6 h-0.5 bg-[var(--foreground)] transition-all duration-300 ${
+            className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${
               isMobileMenuOpen ? 'opacity-0' : ''
             }`}
           />
           <span
-            className={`w-6 h-0.5 bg-[var(--foreground)] transition-all duration-300 ${
+            className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${
               isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
             }`}
           />
@@ -79,7 +79,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-[var(--background)] shadow-lg transition-all duration-300 overflow-hidden ${
+        className={`md:hidden absolute top-full left-0 right-0 bg-background shadow-lg transition-all duration-300 overflow-hidden ${
           isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
@@ -88,7 +88,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className='text-lg font-medium hover:text-[var(--accent-primary)] transition-colors'
+              className='text-lg font-medium hover:text-accent-primary transition-colors'
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.label}

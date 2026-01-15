@@ -13,7 +13,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       className='group block'
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      <article className='relative overflow-hidden rounded-[var(--radius-lg)] bg-gradient-to-br from-white to-[rgba(250,248,245,0.95)] shadow-[var(--clay-shadow)] transition-all duration-500 hover:shadow-[var(--clay-shadow-hover)] hover:-translate-y-2 hover:scale-[1.02]'>
+      <article className='relative overflow-hidden rounded-lg bg-gradient-to-br from-white to-background/95 shadow-lg transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02]'>
         {/* Thumbnail */}
         <div
           className={`relative aspect-[4/3] bg-gradient-to-br ${project.color} overflow-hidden`}
@@ -32,7 +32,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
 
           {/* Hover overlay */}
-          <div className='absolute inset-0 bg-gradient-to-t from-[rgba(45,45,45,0.8)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6'>
+          <div className='absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6'>
             <span className='text-white font-medium flex items-center gap-2'>
               View Case Study
               <svg
@@ -55,12 +55,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {/* Content */}
         <div className='p-6 space-y-3'>
           <div className='flex items-center gap-2'>
-            <span className='text-xs font-semibold uppercase tracking-wider text-[var(--accent-primary)]'>
+            <span className='text-xs font-semibold uppercase tracking-wider text-accent-primary'>
               {project.category}
             </span>
           </div>
 
-          <h3 className='text-xl font-semibold font-[family-name:var(--font-playfair)] group-hover:text-[var(--accent-primary)] transition-colors'>
+          <h3 className='text-xl font-semibold font-serif group-hover:text-accent-primary transition-colors'>
             {project.title}
           </h3>
 
@@ -73,7 +73,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className='text-xs px-3 py-1 rounded-full bg-[rgba(139,124,255,0.1)] text-[var(--foreground)]'
+                className='text-xs px-3 py-1 rounded-full bg-accent-primary/10 text-foreground'
               >
                 {tag}
               </span>
