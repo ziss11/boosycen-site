@@ -8,24 +8,6 @@ const socialLinks = [
     href: 'https://linkedin.com',
     gradient: 'lavender' as const,
   },
-  {
-    name: 'Dribbble',
-    icon: '🎨',
-    href: 'https://dribbble.com',
-    gradient: 'pink' as const,
-  },
-  {
-    name: 'Behance',
-    icon: '🅱️',
-    href: 'https://behance.net',
-    gradient: 'sky' as const,
-  },
-  {
-    name: 'Twitter',
-    icon: '🐦',
-    href: 'https://twitter.com',
-    gradient: 'mint' as const,
-  },
 ];
 
 export default function ContactSection() {
