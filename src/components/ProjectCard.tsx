@@ -13,11 +13,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       className='group block'
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      <article className='relative overflow-hidden rounded-lg bg-gradient-to-br from-white to-background/95 shadow-lg transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02]'>
+      <article className='relative overflow-hidden rounded-lg bg-linear-to-br from-white to-background/95 shadow-lg transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02]'>
         {/* Thumbnail */}
-        <div
-          className={`relative aspect-[4/3] bg-gradient-to-br ${project.color} overflow-hidden`}
-        >
+        <div className={`relative aspect-4/3 ${project.color} overflow-hidden`}>
           {/* Placeholder for actual image */}
           <div className='absolute inset-0 flex items-center justify-center'>
             <div className='text-6xl opacity-60 group-hover:scale-110 transition-transform duration-500'>
@@ -32,7 +30,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
 
           {/* Hover overlay */}
-          <div className='absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6'>
+          <div className='absolute inset-0 bg-linear-to-t from-foreground/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6'>
             <span className='text-white font-medium flex items-center gap-2'>
               View Case Study
               <svg

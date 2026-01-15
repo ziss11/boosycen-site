@@ -24,7 +24,7 @@ export default function AboutSection() {
           <ScrollReveal animation='slide-left'>
             <div className='relative'>
               {/* Main Image Container */}
-              <div className='relative w-full aspect-[4/5] max-w-md mx-auto rounded-xl bg-gradient-to-br from-pastel-lavender to-pastel-pink shadow-lg overflow-hidden'>
+              <div className='relative w-full aspect-4/5 max-w-md mx-auto rounded-xl bg-linear-to-br from-pastel-lavender to-pastel-pink shadow-lg overflow-hidden'>
                 {/* Placeholder for portrait - could add real image */}
                 <div className='absolute inset-0 flex items-center justify-center'>
                   <div className='text-center space-y-4'>
@@ -36,7 +36,7 @@ export default function AboutSection() {
                 </div>
 
                 {/* Decorative gradient overlay */}
-                <div className='absolute inset-0 bg-gradient-to-t from-white/30 to-transparent' />
+                <div className='absolute inset-0 bg-linear-to-t from-white/30 to-transparent' />
               </div>
 
               {/* Floating decorations */}
@@ -67,7 +67,7 @@ export default function AboutSection() {
               </span>
               <h2 className='heading-lg mb-6'>
                 Designing with{' '}
-                <span className='bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
+                <span className='bg-linear-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
                   Purpose & Empathy
                 </span>
               </h2>

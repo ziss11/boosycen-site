@@ -32,7 +32,7 @@ export default function ContactSection() {
   return (
     <section
       id='contact'
-      className='section bg-gradient-to-b from-pastel-lavender/10 to-background'
+      className='section bg-linear-to-b from-pastel-lavender/10 to-background'
     >
       <div className='container'>
         <div className='max-w-2xl mx-auto text-center'>
@@ -42,7 +42,7 @@ export default function ContactSection() {
             </span>
             <h2 className='heading-lg mb-4'>
               Let&apos;s Create Something{' '}
-              <span className='bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
+              <span className='bg-linear-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
                 Amazing
               </span>{' '}
               Together

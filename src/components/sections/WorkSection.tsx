@@ -6,7 +6,7 @@ export default function WorkSection() {
   return (
     <section
       id='work'
-      className='section bg-gradient-to-b from-background to-pastel-lavender/10'
+      className='section bg-linear-to-b from-background to-pastel-lavender/10'
     >
       <div className='container'>
         {/* Section Header */}
@@ -19,7 +19,7 @@ export default function WorkSection() {
           </span>
           <h2 className='heading-lg mb-4'>
             Selected{' '}
-            <span className='bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
+            <span className='bg-linear-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
               Projects
             </span>
           </h2>

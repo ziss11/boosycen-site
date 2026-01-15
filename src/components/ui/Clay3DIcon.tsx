@@ -8,15 +8,15 @@ interface Clay3DIconProps {
   floating?: boolean;
 }
 
-const gradients = {
-  lavender: 'from-pastel-lavender to-pastel-pink',
-  pink: 'from-pastel-pink to-pastel-peach',
-  mint: 'from-pastel-mint to-pastel-sky',
-  peach: 'from-pastel-peach to-pastel-cream',
-  sky: 'from-pastel-sky to-pastel-lavender',
+const gradientClasses = {
+  lavender: 'bg-linear-to-br from-pastel-lavender to-pastel-pink',
+  pink: 'bg-linear-to-br from-pastel-pink to-pastel-peach',
+  mint: 'bg-linear-to-br from-pastel-mint to-pastel-sky',
+  peach: 'bg-linear-to-br from-pastel-peach to-pastel-cream',
+  sky: 'bg-linear-to-br from-pastel-sky to-pastel-lavender',
 };
 
-const sizes = {
+const sizeClasses = {
   sm: 'w-10 h-10 text-lg',
   md: 'w-14 h-14 text-2xl',
   lg: 'w-20 h-20 text-3xl',
@@ -30,20 +30,11 @@ export default function Clay3DIcon({
   className = '',
   floating = false,
 }: Clay3DIconProps) {
+  const floatingClass = floating ? 'animate-float' : '';
+
   return (
     <div
-      className={`
-        inline-flex items-center justify-center
-        bg-gradient-to-br ${gradients[gradient]}
-        rounded-md
-        shadow-md
-        transition-all duration-300
-        hover:shadow-lg
-        hover:scale-105
-        ${sizes[size]}
-        ${floating ? 'animate-float' : ''}
-        ${className}
-      `}
+      className={`inline-flex items-center justify-center rounded-md shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 ${gradientClasses[gradient]} ${sizeClasses[size]} ${floatingClass} ${className}`.trim()}
     >
       {children}
     </div>
