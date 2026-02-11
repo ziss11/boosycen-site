@@ -5,7 +5,7 @@ import Clay3DIcon, {
   TargetIcon,
 } from '@/components/ui/Clay3DIcon';
 import ScrollReveal from '@/components/ui/ScrollReveal';
-import { projects } from '@/data/projects';
+import { projectService } from '@/lib/project-service';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -14,6 +14,7 @@ interface ProjectPageProps {
 }
 
 export async function generateStaticParams() {
+  const projects = await projectService.getAll();
   return projects.map((project) => ({
     slug: project.slug,
   }));
@@ -21,7 +22,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = await projectService.getBySlug(slug);
 
   if (!project) {
     return { title: 'Project Not Found' };
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = await projectService.getBySlug(slug);
 
   if (!project || !project.caseStudy) {
     notFound();
@@ -48,12 +49,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <Header />
       <main className='pt-24'>
         {/* Hero Section */}
-        <section className={`py-20 bg-gradient-to-br ${project.color}`}>
+        <section className={`py-20 bg-linear-br ${project.color}`}>
           <div className='container'>
             <ScrollReveal animation='fade-up'>
               <Link
                 href='/#work'
-                className='inline-flex items-center gap-2 text-[var(--foreground)] opacity-70 hover:opacity-100 transition-opacity mb-8'
+                className='inline-flex items-center gap-2 text-[--foreground] opacity-70 hover:opacity-100 transition-opacity mb-8'
               >
                 <svg
                   className='w-5 h-5'
@@ -76,9 +77,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               animation='fade-up'
               delay={100}
             >
-              <span className='inline-block px-4 py-2 rounded-full bg-[rgba(255,255,255,0.5)] text-[var(--foreground)] font-medium text-sm mb-4'>
-                {project.category}
-              </span>
+              <div className='flex flex-wrap gap-2 mb-4'>
+                {project.category.map((cat) => (
+                  <span
+                    key={cat}
+                    className='inline-block px-4 py-2 rounded-full bg-[rgba(255,255,255,0.5)] text-[--foreground] font-medium text-sm'
+                  >
+                    {cat}
+                  </span>
+                ))}
+              </div>
               <h1 className='heading-xl mb-6'>{project.title}</h1>
               <p className='text-xl text-muted max-w-2xl'>
                 {project.description}
@@ -107,7 +115,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className='container'>
             <ScrollReveal animation='scale'>
               <div
-                className={`aspect-video rounded-[var(--radius-xl)] bg-gradient-to-br ${project.color} shadow-[var(--clay-shadow)] flex items-center justify-center`}
+                className={`aspect-video rounded-xl bg-linear-to-br ${project.color} shadow-(--clay-shadow) flex items-center justify-center`}
               >
                 <div className='text-center'>
                   <div className='text-8xl mb-4'>🖼️</div>
@@ -121,7 +129,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </section>
 
         {/* Case Study Content */}
-        <section className='section bg-[var(--background)]'>
+        <section className='section bg-[--background]'>
           <div className='container max-w-4xl'>
             {/* Overview */}
             <ScrollReveal
@@ -179,8 +187,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     animation='slide-left'
                     delay={index * 100}
                   >
-                    <div className='flex items-start gap-4 p-4 rounded-[var(--radius-md)] bg-[rgba(255,255,255,0.5)] hover:bg-[rgba(255,255,255,0.8)] transition-colors'>
-                      <div className='w-8 h-8 rounded-full bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] flex items-center justify-center text-white font-bold text-sm shrink-0'>
+                    <div className='flex items-start gap-4 p-4 rounded-md bg-[rgba(255,255,255,0.5)] hover:bg-[rgba(255,255,255,0.8)] transition-colors'>
+                      <div className='w-8 h-8 rounded-full bg-linear-to-br from-[--accent-primary] to-[--accent-secondary] flex items-center justify-center text-white font-bold text-sm shrink-0'>
                         {index + 1}
                       </div>
                       <p className='text-muted'>{step}</p>
@@ -209,8 +217,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                           index === 0
                             ? 'lavender'
                             : index === 1
-                            ? 'mint'
-                            : 'peach'
+                              ? 'mint'
+                              : 'peach'
                         }
                         size='lg'
                         className='mx-auto mb-4'
@@ -231,7 +239,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <div className='flex justify-between items-center pt-8 border-t border-[rgba(45,45,45,0.1)]'>
                 <Link
                   href='/#work'
-                  className='inline-flex items-center gap-2 text-[var(--accent-primary)] font-medium hover:underline'
+                  className='inline-flex items-center gap-2 text-[--accent-primary] font-medium hover:underline'
                 >
                   <svg
                     className='w-5 h-5'
@@ -250,7 +258,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </Link>
                 <Link
                   href='#contact'
-                  className='inline-flex items-center gap-2 text-[var(--accent-primary)] font-medium hover:underline'
+                  className='inline-flex items-center gap-2 text-[--accent-primary] font-medium hover:underline'
                 >
                   Start a Project
                   <svg

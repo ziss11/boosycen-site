@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   slug: string;
   title: string;
-  category: string;
+  category: string[];
   description: string;
   thumbnail: string;
   color: string;
@@ -13,8 +13,8 @@ export interface Project {
     solution: string;
     process: string[];
     results: string[];
-    mockups: string[];
   };
+  externalUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     id: '1',
     slug: 'fintech-app-redesign',
     title: 'FinTech App Redesign',
-    category: 'Mobile App',
+    category: ['Mobile App'],
     description:
       'Reimagining the banking experience with a focus on simplicity and trust. A complete overhaul of a financial app serving 2M+ users.',
     thumbnail: '/projects/fintech-thumb.jpg',
@@ -47,14 +47,13 @@ export const projects: Project[] = [
         '25% reduction in support tickets',
         '60% faster task completion for key flows',
       ],
-      mockups: [],
     },
   },
   {
     id: '2',
     slug: 'health-wellness-platform',
     title: 'Health & Wellness Platform',
-    category: 'Web Application',
+    category: ['Web Application'],
     description:
       'A holistic health tracking platform that empowers users to take control of their wellbeing through personalized insights.',
     thumbnail: '/projects/health-thumb.jpg',
@@ -79,14 +78,13 @@ export const projects: Project[] = [
         '150% increase in daily active users',
         '35% improvement in user retention',
       ],
-      mockups: [],
     },
   },
   {
     id: '3',
     slug: 'ecommerce-experience',
     title: 'E-Commerce Experience',
-    category: 'E-Commerce',
+    category: ['E-Commerce'],
     description:
       'Transforming online shopping with an immersive, personalized experience that increased conversions by 35%.',
     thumbnail: '/projects/ecommerce-thumb.jpg',
@@ -111,14 +109,13 @@ export const projects: Project[] = [
         '50% reduction in cart abandonment',
         '28% increase in average order value',
       ],
-      mockups: [],
     },
   },
   {
     id: '4',
     slug: 'saas-dashboard',
     title: 'SaaS Analytics Dashboard',
-    category: 'Dashboard',
+    category: ['Dashboard'],
     description:
       'Simplifying complex data into actionable insights for business teams with an intuitive analytics platform.',
     thumbnail: '/projects/saas-thumb.jpg',
@@ -143,7 +140,6 @@ export const projects: Project[] = [
         '95% user adoption within first month',
         'NPS score improved from 32 to 67',
       ],
-      mockups: [],
     },
   },
 ];

@@ -1,8 +1,12 @@
 import ProjectCard from '@/components/ProjectCard';
 import ScrollReveal from '@/components/ui/ScrollReveal';
-import { projects } from '@/data/projects';
+import { Project } from '@/lib/project-service';
 
-export default function WorkSection() {
+interface WorkSectionProps {
+  projects: Project[];
+}
+
+export default function WorkSection({ projects }: WorkSectionProps) {
   return (
     <section
       id='work'

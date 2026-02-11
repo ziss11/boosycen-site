@@ -4,15 +4,18 @@ import AboutSection from '@/components/sections/AboutSection';
 import ContactSection from '@/components/sections/ContactSection';
 import HeroSection from '@/components/sections/HeroSection';
 import WorkSection from '@/components/sections/WorkSection';
+import { projectService } from '@/lib/project-service';
 
-export default function Home() {
+export default async function Home() {
+  const projects = await projectService.getAll();
+
   return (
     <>
       <Header />
       <main>
         <HeroSection />
         <AboutSection />
-        <WorkSection />
+        <WorkSection projects={projects} />
         <ContactSection />
       </main>
       <Footer />
