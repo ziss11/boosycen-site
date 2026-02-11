@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { writeFile } from 'fs/promises';
+import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 
 // Maximum file size: 5MB
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     if (!ALLOWED_TYPES.includes(file.type)) {
       return NextResponse.json(
         { error: 'Invalid file type. Only images are allowed.' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     if (file.size > MAX_FILE_SIZE) {
       return NextResponse.json(
         { error: 'File size exceeds 5MB limit' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -61,13 +61,13 @@ export async function POST(request: NextRequest) {
         url: publicUrl,
         filename,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(
       { error: 'Failed to upload file' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
