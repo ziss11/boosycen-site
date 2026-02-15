@@ -1,6 +1,10 @@
-import { writeFile } from 'fs/promises';
+import { writeFile, mkdir } from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
+
+// Configure route to handle larger file uploads
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 // Maximum file size: 5MB
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -48,8 +52,17 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
+    // Ensure the projects directory exists
+    const projectsDir = path.join(process.cwd(), 'public', 'projects');
+    try {
+      await mkdir(projectsDir, { recursive: true });
+    } catch (err) {
+      // Directory might already exist, which is fine
+      console.log('Projects directory already exists or created');
+    }
+
     // Save to public/projects directory
-    const uploadPath = path.join(process.cwd(), 'public/projects', filename);
+    const uploadPath = path.join(projectsDir, filename);
     await writeFile(uploadPath, buffer);
 
     // Return the public URL path

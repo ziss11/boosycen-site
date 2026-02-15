@@ -53,12 +53,17 @@ export default function FileUpload({
       const formData = new FormData();
       formData.append('file', file);
 
+      console.log('Uploading file:', file.name, 'Size:', file.size, 'Type:', file.type);
+
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
 
+      console.log('Upload response status:', response.status);
+
       const data = await response.json();
+      console.log('Upload response data:', data);
 
       if (!response.ok) {
         throw new Error(data.error || 'Upload failed');
@@ -68,6 +73,7 @@ export default function FileUpload({
       onChange(data.url);
       setPreview(data.url);
     } catch (err) {
+      console.error('Upload error:', err);
       setError(err instanceof Error ? err.message : 'Failed to upload file');
       setPreview(value); // Revert to original value on error
     } finally {

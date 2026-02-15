@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
     // Simple hardcoded password for demonstration as requested
     // In production, this should be in an environment variable
-    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'sayang785';
+    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'adeksayang785';
 
     if (password === ADMIN_PASSWORD) {
       // Set a cookie to indicate the user is logged in

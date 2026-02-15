@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface Project {
   id: string;
@@ -12,7 +13,6 @@ interface Project {
   description: string;
   thumbnail: string;
   color: string;
-  tags: string[];
   externalUrl?: string;
 }
 
@@ -175,6 +175,19 @@ export default function AdminDashboard() {
                     ))}
                   </div>
 
+                  {/* Thumbnail Preview */}
+                  {project.thumbnail && (
+                    <div className='relative aspect-video rounded-lg overflow-hidden'>
+                      <Image
+                        src={project.thumbnail}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
+
                   {/* Title */}
                   <h3 className='font-serif font-semibold text-lg text-foreground line-clamp-2'>
                     {project.title}
@@ -184,23 +197,6 @@ export default function AdminDashboard() {
                   <p className='text-sm text-muted line-clamp-3'>
                     {project.description}
                   </p>
-
-                  {/* Tags */}
-                  <div className='flex flex-wrap gap-1'>
-                    {project.tags.slice(0, 4).map((tag) => (
-                      <span
-                        key={tag}
-                        className='text-xs px-2 py-0.5 rounded bg-background text-muted'
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                    {project.tags.length > 4 && (
-                      <span className='text-xs px-2 py-0.5 rounded bg-background text-muted'>
-                        +{project.tags.length - 4}
-                      </span>
-                    )}
-                  </div>
 
                   {/* Actions */}
                   <div className='flex gap-3 pt-3 border-t border-foreground/10'>

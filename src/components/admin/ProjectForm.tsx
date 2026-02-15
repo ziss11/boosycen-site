@@ -23,17 +23,11 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
   const [formData, setFormData] = useState<Partial<Project>>({
     title: initialData?.title || '',
     category: initialData?.category || [],
-    slug: initialData?.slug || '',
     description: initialData?.description || '',
     thumbnail: initialData?.thumbnail || '',
     color: initialData?.color || '',
-    tags: initialData?.tags || [],
     externalUrl: initialData?.externalUrl || '',
   });
-
-  const [tagsInput, setTagsInput] = useState(
-    initialData?.tags?.join(', ') || '',
-  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,11 +37,7 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
     try {
       const dataToSubmit: Partial<Project> = {
         ...formData,
-        color: generateColorGradient(formData.slug || formData.title || ''),
-        tags: tagsInput
-          .split(',')
-          .map((t) => t.trim())
-          .filter(Boolean),
+        color: generateColorGradient(formData.title || ''),
       };
 
       const result = await action(dataToSubmit);
@@ -109,20 +99,6 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
 
         <div className='sm:col-span-6'>
           <label className='block text-sm font-semibold text-foreground mb-2'>
-            Slug (URL)
-          </label>
-          <input
-            type='text'
-            name='slug'
-            required
-            value={formData.slug}
-            onChange={handleChange}
-            className='clay-input w-full text-foreground placeholder:text-muted'
-          />
-        </div>
-
-        <div className='sm:col-span-6'>
-          <label className='block text-sm font-semibold text-foreground mb-2'>
             Description
           </label>
           <textarea
@@ -142,18 +118,6 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
               setFormData((prev) => ({ ...prev, thumbnail: url }))
             }
             label='Project Thumbnail'
-          />
-        </div>
-
-        <div className='sm:col-span-6'>
-          <label className='block text-sm font-semibold text-foreground mb-2'>
-            Tags (comma separated)
-          </label>
-          <input
-            type='text'
-            value={tagsInput}
-            onChange={(e) => setTagsInput(e.target.value)}
-            className='clay-input w-full text-foreground placeholder:text-muted'
           />
         </div>
 

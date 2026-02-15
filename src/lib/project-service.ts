@@ -1,6 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { generateColorGradient } from './color-generator';
+import { generateSlug, ensureUniqueSlug } from './slug-utils';
+import { revalidatePath } from 'next/cache';
 
 // Define the Project type based on the existing structure
 export interface Project {
@@ -11,7 +13,6 @@ export interface Project {
   description: string;
   thumbnail: string;
   color: string;
-  tags: string[];
   caseStudy?: {
     overview: string;
     problem: string;
@@ -68,9 +69,13 @@ export const projectService = {
       project.id = Date.now().toString();
     }
 
+    // Auto-generate slug from title
+    const baseSlug = generateSlug(project.title || '');
+    project.slug = ensureUniqueSlug(baseSlug, projects);
+
     // Auto-generate color if not provided
     if (!project.color) {
-      project.color = generateColorGradient(project.slug || project.title);
+      project.color = generateColorGradient(project.title || project.slug || '');
     }
 
     // Ensure category is array
@@ -92,8 +97,21 @@ export const projectService = {
     if (index === -1) return null;
 
     const updatedProject = { ...projects[index], ...updates };
+
+    // Regenerate slug if title changed
+    if (updates.title && updates.title !== projects[index].title) {
+      const baseSlug = generateSlug(updates.title);
+      updatedProject.slug = ensureUniqueSlug(baseSlug, projects, id);
+    }
+
     projects[index] = updatedProject;
     await writeProjects(projects);
+
+    // Revalidate affected routes
+    revalidatePath('/');
+    revalidatePath('/admin');
+    revalidatePath(`/projects/${updatedProject.slug}`);
+
     return updatedProject;
   },
 

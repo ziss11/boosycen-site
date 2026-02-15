@@ -6,7 +6,6 @@ export interface Project {
   description: string;
   thumbnail: string;
   color: string;
-  tags: string[];
   caseStudy?: {
     overview: string;
     problem: string;
@@ -27,7 +26,6 @@ export const projects: Project[] = [
       'Reimagining the banking experience with a focus on simplicity and trust. A complete overhaul of a financial app serving 2M+ users.',
     thumbnail: '/projects/fintech-thumb.jpg',
     color: 'from-[var(--pastel-lavender)] to-[var(--pastel-pink)]',
-    tags: ['Mobile', 'Fintech', 'UX Research'],
     caseStudy: {
       overview:
         'A comprehensive redesign of a mobile banking application focusing on improving user trust, simplifying complex financial operations, and creating a more intuitive navigation system.',
@@ -58,7 +56,6 @@ export const projects: Project[] = [
       'A holistic health tracking platform that empowers users to take control of their wellbeing through personalized insights.',
     thumbnail: '/projects/health-thumb.jpg',
     color: 'from-[var(--pastel-mint)] to-[var(--pastel-sky)]',
-    tags: ['Web', 'Healthcare', 'Dashboard'],
     caseStudy: {
       overview:
         'Designed a comprehensive health platform that integrates fitness tracking, nutrition planning, and mental wellness features into one cohesive experience.',
@@ -89,7 +86,6 @@ export const projects: Project[] = [
       'Transforming online shopping with an immersive, personalized experience that increased conversions by 35%.',
     thumbnail: '/projects/ecommerce-thumb.jpg',
     color: 'from-[var(--pastel-peach)] to-[var(--pastel-cream)]',
-    tags: ['Web', 'E-commerce', 'Conversion'],
     caseStudy: {
       overview:
         'A complete UX overhaul of an e-commerce platform focusing on reducing cart abandonment and improving product discovery.',
@@ -120,7 +116,6 @@ export const projects: Project[] = [
       'Simplifying complex data into actionable insights for business teams with an intuitive analytics platform.',
     thumbnail: '/projects/saas-thumb.jpg',
     color: 'from-[var(--pastel-sky)] to-[var(--pastel-lavender)]',
-    tags: ['SaaS', 'Dashboard', 'Data Viz'],
     caseStudy: {
       overview:
         'Designed an analytics dashboard that transforms complex data into visual stories, enabling teams to make data-driven decisions faster.',

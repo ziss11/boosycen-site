@@ -1,5 +1,5 @@
 import { Project } from '@/data/projects';
-import Link from 'next/link';
+import Image from 'next/image';
 
 interface ProjectCardProps {
   project: Project;
@@ -27,18 +27,27 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
       {/* Thumbnail */}
       <div className={`relative aspect-4/3 ${project.color} overflow-hidden`}>
-        {/* Placeholder for actual image */}
-        <div className='absolute inset-0 flex items-center justify-center'>
-          <div className='text-6xl opacity-60 group-hover:scale-110 transition-transform duration-500'>
-            {project.category.includes('Mobile App')
-              ? '📱'
-              : project.category.includes('Web Application')
-              ? '💻'
-              : project.category.includes('E-Commerce')
-              ? '🛒'
-              : '📊'}
+        {project.thumbnail ? (
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            className="object-cover group-hover:scale-110 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className='absolute inset-0 flex items-center justify-center'>
+            <div className='text-6xl opacity-60 group-hover:scale-110 transition-transform duration-500'>
+              {project.category.includes('Mobile App')
+                ? '📱'
+                : project.category.includes('Web Application')
+                ? '💻'
+                : project.category.includes('E-Commerce')
+                ? '🛒'
+                : '📊'}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Hover overlay */}
         <div className='absolute inset-0 bg-linear-to-t from-foreground/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6'>
@@ -88,24 +97,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         <p className='text-muted text-sm line-clamp-2'>
           {project.description}
         </p>
-
-        {/* Tags */}
-        <div className='flex flex-wrap gap-2 pt-2'>
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className='text-xs px-3 py-1 rounded-full bg-accent-primary/10 text-foreground'
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
       </div>
     </article>
   );
 
-  // Conditional wrapper: <a> for external URL, <Link> for internal
+  // Conditional wrapper based on externalUrl
   if (hasExternalUrl) {
+    // External URL: clickable, opens in new tab
     return (
       <a
         href={project.externalUrl}
@@ -120,13 +118,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     );
   }
 
+  // No external URL: NOT clickable, no link wrapper
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className='group block'
+    <div
+      className='block'
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {articleContent}
-    </Link>
+    </div>
   );
 }

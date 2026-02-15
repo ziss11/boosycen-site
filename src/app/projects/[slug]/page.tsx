@@ -92,21 +92,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 {project.description}
               </p>
             </ScrollReveal>
-
-            <ScrollReveal
-              animation='fade-up'
-              delay={200}
-              className='flex flex-wrap gap-2 mt-8'
-            >
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className='px-4 py-2 rounded-full bg-[rgba(255,255,255,0.6)] text-sm font-medium'
-                >
-                  {tag}
-                </span>
-              ))}
-            </ScrollReveal>
           </div>
         </section>
 
