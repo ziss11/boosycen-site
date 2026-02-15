@@ -1,4 +1,4 @@
-import { writeFile, mkdir } from 'fs/promises';
+import { mkdir, writeFile } from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 
@@ -21,10 +21,22 @@ const ALLOWED_TYPES = [
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
-    const file = formData.get('file') as File;
+    const file = formData.get('file');
 
-    if (!file) {
-      return NextResponse.json({ error: 'No file provided' }, { status: 400 });
+    // Validate file exists and is a File object
+    if (!file || !(file instanceof File)) {
+      return NextResponse.json(
+        { error: 'No file provided or invalid file type' },
+        { status: 400 }
+      );
+    }
+
+    // Validate filename for path traversal
+    if (file.name.includes('..') || file.name.includes('/') || file.name.includes('\\')) {
+      return NextResponse.json(
+        { error: 'Invalid filename' },
+        { status: 400 }
+      );
     }
 
     // Validate file type
@@ -56,9 +68,8 @@ export async function POST(request: NextRequest) {
     const projectsDir = path.join(process.cwd(), 'public', 'projects');
     try {
       await mkdir(projectsDir, { recursive: true });
-    } catch (err) {
+    } catch {
       // Directory might already exist, which is fine
-      console.log('Projects directory already exists or created');
     }
 
     // Save to public/projects directory

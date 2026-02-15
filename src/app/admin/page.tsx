@@ -20,26 +20,50 @@ export default function AdminDashboard() {
   const router = useRouter();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [logoutLoading, setLogoutLoading] = useState(false);
 
   useEffect(() => {
     fetch('/api/projects')
-      .then((res) => res.json())
-      .then((data) => setProjects(data))
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to fetch projects: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data)) {
+          throw new Error('Invalid response format');
+        }
+        setProjects(data);
+        setError(null);
+      })
+      .catch((err) => {
+        console.error('Error loading projects:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load projects');
+      })
       .finally(() => setLoading(false));
   }, []);
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this project?')) return;
 
-    const res = await fetch('/api/projects', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id }),
-    });
+    try {
+      const res = await fetch('/api/projects', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
 
-    if (res.ok) {
-      setProjects((prev) => prev.filter((p) => p.id !== id));
+      if (res.ok) {
+        setProjects((prev) => prev.filter((p) => p.id !== id));
+      } else {
+        const data = await res.json();
+        alert(`Failed to delete project: ${data.message || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Delete error:', error);
+      alert('Failed to delete project. Please try again.');
     }
   };
 
@@ -142,19 +166,33 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {loading ? (
+        {error && (
+          <div className='clay-card p-12 text-center animate-fade-in-up delay-100'>
+            <div className='text-6xl mb-4'>⚠️</div>
+            <p className='text-red-600 font-medium mb-2'>Error Loading Projects</p>
+            <p className='text-muted text-sm'>{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className='mt-4 clay-button'
+            >
+              Retry
+            </button>
+          </div>
+        )}
+
+        {!error && loading ? (
           <div className='clay-card p-12 text-center animate-fade-in-up delay-100'>
             <div className='inline-block animate-spin h-8 w-8 border-4 border-accent-primary border-t-transparent rounded-full'></div>
             <p className='text-muted mt-4'>Loading projects...</p>
           </div>
-        ) : projects.length === 0 ? (
+        ) : !error && projects.length === 0 ? (
           <div className='clay-card p-12 text-center animate-fade-in-up delay-100'>
             <div className='text-6xl mb-4'>📁</div>
             <p className='text-muted'>
               No projects found. Create one to get started.
             </p>
           </div>
-        ) : (
+        ) : !error ? (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up delay-100'>
             {projects.map((project, index) => (
               <div
@@ -256,7 +294,7 @@ export default function AdminDashboard() {
               </div>
             ))}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

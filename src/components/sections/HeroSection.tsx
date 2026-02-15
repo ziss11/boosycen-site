@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@/components/ui/Button';
 import Clay3DIcon from '@/components/ui/Clay3DIcon';
 import FloatingElement from '@/components/ui/FloatingElement';

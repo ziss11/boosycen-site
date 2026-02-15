@@ -29,7 +29,30 @@ const dataFilePath = path.join(process.cwd(), 'src/data/projects.json');
 async function readProjects(): Promise<Project[]> {
   try {
     const data = await fs.readFile(dataFilePath, 'utf8');
-    return JSON.parse(data);
+    const parsed = JSON.parse(data);
+
+    // Validate it's an array
+    if (!Array.isArray(parsed)) {
+      console.error('Projects file is not an array');
+      return [];
+    }
+
+    // Validate each project has required fields
+    const validProjects = parsed.filter((p: unknown) => {
+      if (typeof p !== 'object' || p === null) return false;
+      const project = p as Partial<Project>;
+      return (
+        typeof project.id === 'string' &&
+        typeof project.title === 'string' &&
+        typeof project.slug === 'string'
+      );
+    });
+
+    if (validProjects.length !== parsed.length) {
+      console.warn(`Filtered out ${parsed.length - validProjects.length} invalid projects`);
+    }
+
+    return validProjects as Project[];
   } catch (error) {
     console.error('Error reading projects:', error);
     return [];
@@ -79,8 +102,13 @@ export const projectService = {
     }
 
     // Ensure category is array
-    if (!Array.isArray(project.category)) {
-      project.category = [project.category as unknown as string];
+    if (!project.category) {
+      project.category = [];
+    } else if (!Array.isArray(project.category)) {
+      // Handle case where category might be a single string
+      project.category = typeof project.category === 'string'
+        ? [project.category]
+        : [];
     }
 
     projects.push(project);

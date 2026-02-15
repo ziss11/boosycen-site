@@ -7,9 +7,30 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { password } = body;
 
-    // Simple hardcoded password for demonstration as requested
-    // In production, this should be in an environment variable
-    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'adeksayang785';
+    // Validate input
+    if (!password || typeof password !== 'string' || password.length === 0) {
+      return NextResponse.json(
+        { success: false, message: 'Password is required' },
+        { status: 400 }
+      );
+    }
+
+    if (password.length > 100) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid password' },
+        { status: 400 }
+      );
+    }
+
+    // Require ADMIN_PASSWORD environment variable
+    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+    if (!ADMIN_PASSWORD) {
+      return NextResponse.json(
+        { success: false, message: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
 
     if (password === ADMIN_PASSWORD) {
       // Set a cookie to indicate the user is logged in

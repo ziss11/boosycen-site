@@ -1,5 +1,6 @@
 import { Project } from '@/data/projects';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ProjectCardProps {
   project: Project;
@@ -118,13 +119,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     );
   }
 
-  // No external URL: NOT clickable, no link wrapper
+  // No external URL: Navigate to case study page
   return (
-    <div
-      className='block'
+    <Link
+      href={`/projects/${project.slug}`}
+      className='group block'
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {articleContent}
-    </div>
+    </Link>
   );
 }

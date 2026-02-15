@@ -43,7 +43,15 @@ export default function FileUpload({
     // Show preview
     const reader = new FileReader();
     reader.onloadend = () => {
-      setPreview(reader.result as string);
+      if (reader.result) {
+        setPreview(reader.result as string);
+      } else {
+        setError('Failed to read file preview');
+      }
+    };
+    reader.onerror = () => {
+      setError('Failed to read file');
+      setPreview(value); // Revert to original
     };
     reader.readAsDataURL(file);
 
@@ -53,17 +61,12 @@ export default function FileUpload({
       const formData = new FormData();
       formData.append('file', file);
 
-      console.log('Uploading file:', file.name, 'Size:', file.size, 'Type:', file.type);
-
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
 
-      console.log('Upload response status:', response.status);
-
       const data = await response.json();
-      console.log('Upload response data:', data);
 
       if (!response.ok) {
         throw new Error(data.error || 'Upload failed');
