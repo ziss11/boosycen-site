@@ -165,7 +165,7 @@ export default function ProcessSection() {
   return (
     <section
       id='process'
-      className='relative overflow-hidden bg-bg-dark section-py'
+      className='relative overflow-hidden bg-bg-subtle dark:bg-bg-dark section-py'
       aria-label='My design process'
     >
       {/* Background gradients */}
@@ -173,8 +173,8 @@ export default function ProcessSection() {
         className='absolute inset-0 pointer-events-none'
         aria-hidden='true'
       >
-        <div className='absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-white/10 to-transparent' />
-        <div className='absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-white/10 to-transparent' />
+        <div className='absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-black/5 dark:via-white/10 to-transparent' />
+        <div className='absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-black/5 dark:via-white/10 to-transparent' />
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/6 blur-[120px]' />
       </div>
 
@@ -184,11 +184,11 @@ export default function ProcessSection() {
           animation='fade-up'
           className='text-center mb-12 md:mb-16'
         >
-          <span className='badge badge-dark mb-4 inline-flex'>How I Work</span>
-          <h2 className='heading-xl text-text-light mb-4'>
-            My Design <span className='text-gradient-light'>Process</span>
+          <span className='badge mb-4 inline-flex'>How I Work</span>
+          <h2 className='heading-xl text-text-primary mb-4'>
+            My Design <span className='text-gradient'>Process</span>
           </h2>
-          <p className='body-lg text-text-light-muted max-w-xl mx-auto'>
+          <p className='body-lg text-text-muted max-w-xl mx-auto'>
             A structured, human-centered approach that turns ambiguity into
             clarity and ideas into impactful digital experiences.
           </p>
@@ -202,13 +202,13 @@ export default function ProcessSection() {
               animation='fade-up'
               delay={index * 80}
             >
-              <div className='group relative card-dark rounded-2xl p-5 md:p-6 hover:bg-bg-dark-hover transition-all duration-300 border border-white/5 hover:border-accent/20 h-full flex flex-col'>
+              <div className='group relative card rounded-2xl p-5 md:p-6 hover:bg-black/4 dark:hover:bg-bg-dark-hover transition-all duration-300 border border-(--border-light) dark:border-white/5 hover:border-accent/20 h-full flex flex-col'>
                 {/* Number (faded background) */}
                 <span
                   className='absolute top-3 right-4 text-5xl font-bold leading-none select-none pointer-events-none'
                   style={{
                     fontFamily: 'var(--font-playfair)',
-                    color: 'rgba(167,139,250,0.08)',
+                    color: 'rgba(124,58,237,0.07)',
                   }}
                   aria-hidden='true'
                 >
@@ -216,22 +216,22 @@ export default function ProcessSection() {
                 </span>
 
                 {/* Icon */}
-                <div className='w-12 h-12 rounded-xl bg-accent/10 border border-accent/15 flex items-center justify-center text-accent-light mb-4 group-hover:bg-accent/15 transition-colors shrink-0'>
+                <div className='w-12 h-12 rounded-xl bg-accent/10 border border-accent/15 flex items-center justify-center text-accent mb-4 group-hover:bg-accent/15 transition-colors shrink-0'>
                   {step.icon}
                 </div>
 
                 {/* Step number badge */}
-                <span className='text-xs font-bold tracking-widest text-accent-light/50 uppercase mb-2'>
+                <span className='text-xs font-bold tracking-widest text-accent/50 uppercase mb-2'>
                   Step {step.number}
                 </span>
 
                 {/* Title */}
-                <h3 className='text-lg font-bold text-text-light mb-2'>
+                <h3 className='text-lg font-bold text-text-primary mb-2'>
                   {step.title}
                 </h3>
 
                 {/* Description */}
-                <p className='text-sm text-text-light-muted leading-relaxed flex-1'>
+                <p className='text-sm text-text-muted leading-relaxed flex-1'>
                   {step.description}
                 </p>
 
@@ -240,7 +240,7 @@ export default function ProcessSection() {
                   {step.tags.map((tag) => (
                     <span
                       key={tag}
-                      className='text-[10px] px-2 py-0.5 rounded-full border border-white/8 text-text-light-muted font-medium'
+                      className='text-[10px] px-2 py-0.5 rounded-full border border-(--border-light) dark:border-white/8 text-text-muted font-medium'
                     >
                       {tag}
                     </span>

@@ -28,7 +28,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className='relative min-h-svh flex flex-col overflow-hidden bg-bg-primary pt-6 md:pt-28 pb-16'
+      className='relative min-h-svh flex flex-col overflow-hidden bg-bg-primary pt-6 md:pt-24 pb-16'
       aria-label='Hero section'
     >
       {/* Grid texture background */}
@@ -145,27 +145,36 @@ export default function HeroSection() {
                   <div className='w-2.5 h-2.5 rounded-full bg-red-400' />
                   <div className='w-2.5 h-2.5 rounded-full bg-yellow-400' />
                   <div className='w-2.5 h-2.5 rounded-full bg-green-400' />
-                  <div className='ml-2 flex-1 h-5 rounded-md bg-gray-100 flex items-center px-2'>
-                    <div className='w-20 h-1.5 rounded bg-gray-200' />
+                  <div className='ml-2 flex-1 h-5 rounded-md bg-gray-100 dark:bg-gray-800 flex items-center px-2'>
+                    <div className='w-20 h-1.5 rounded bg-gray-200 dark:bg-gray-700' />
                   </div>
                 </div>
 
                 {/* Hero banner mock */}
-                <div className='h-24 md:h-28 rounded-xl bg-linear-to-br from-violet-50 to-pink-50 border border-violet-100/50 mb-3 flex flex-col items-center justify-center gap-2.5'>
+                <div className='h-24 md:h-28 rounded-xl bg-linear-to-br from-violet-50 to-pink-50 dark:from-violet-950/30 dark:to-pink-950/20 border border-violet-100/50 dark:border-violet-800/30 mb-3 flex flex-col items-center justify-center gap-2.5'>
                   <div className='w-20 h-2 rounded-full bg-violet-300' />
                   <div className='w-32 h-1.5 rounded-full bg-violet-200' />
                   <div className='flex gap-2 mt-1'>
                     <div className='w-14 h-5 rounded-full bg-violet-500' />
-                    <div className='w-14 h-5 rounded-full border border-gray-200 bg-white' />
+                    <div className='w-14 h-5 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900' />
                   </div>
                 </div>
 
                 {/* Card grid mock */}
                 <div className='grid grid-cols-3 gap-2 mb-2'>
                   {[
-                    { bg: 'bg-violet-100', dot: 'bg-violet-400' },
-                    { bg: 'bg-pink-100', dot: 'bg-pink-400' },
-                    { bg: 'bg-blue-100', dot: 'bg-blue-400' },
+                    {
+                      bg: 'bg-violet-100 dark:bg-violet-900/30',
+                      dot: 'bg-violet-400',
+                    },
+                    {
+                      bg: 'bg-pink-100 dark:bg-pink-900/30',
+                      dot: 'bg-pink-400',
+                    },
+                    {
+                      bg: 'bg-blue-100 dark:bg-blue-900/30',
+                      dot: 'bg-blue-400',
+                    },
                   ].map((item, i) => (
                     <div
                       key={i}
@@ -181,8 +190,8 @@ export default function HeroSection() {
 
                 {/* Input + button row */}
                 <div className='flex gap-2'>
-                  <div className='flex-1 h-8 rounded-lg bg-gray-50 border border-gray-100 flex items-center px-2'>
-                    <div className='w-16 h-1.5 rounded bg-gray-200' />
+                  <div className='flex-1 h-8 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center px-2'>
+                    <div className='w-16 h-1.5 rounded bg-gray-200 dark:bg-gray-600' />
                   </div>
                   <div className='w-16 h-8 rounded-lg bg-violet-600 flex items-center justify-center'>
                     <div className='w-8 h-1.5 rounded bg-white/70' />
@@ -215,7 +224,7 @@ export default function HeroSection() {
               </div>
 
               {/* Approval badge — top right */}
-              <div className='absolute -top-7 right-4 hidden sm:flex items-center gap-1.5 bg-white rounded-full pl-2.5 pr-3 py-1.5 shadow-md border border-(--border-light) animate-float'>
+              <div className='absolute -top-7 right-4 hidden sm:flex items-center gap-1.5 bg-white dark:bg-gray-900 rounded-full pl-2.5 pr-3 py-1.5 shadow-md border border-(--border-light) animate-float'>
                 <div className='w-5 h-5 rounded-full bg-green-100 flex items-center justify-center'>
                   <svg
                     width='10'
@@ -233,7 +242,7 @@ export default function HeroSection() {
                     />
                   </svg>
                 </div>
-                <span className='text-xs font-semibold text-gray-700'>
+                <span className='text-xs font-semibold text-gray-700 dark:text-gray-300'>
                   Design Approved
                 </span>
               </div>

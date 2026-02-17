@@ -4,32 +4,32 @@ const skills = [
   {
     name: 'UI Design',
     icon: '▣',
-    color: 'bg-violet-50 text-violet-700 border-violet-100',
+    color: 'bg-violet-50 text-violet-700 border-violet-100 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-800/30',
   },
   {
     name: 'UX Research',
     icon: '◎',
-    color: 'bg-pink-50 text-pink-700 border-pink-100',
+    color: 'bg-pink-50 text-pink-700 border-pink-100 dark:bg-pink-900/30 dark:text-pink-300 dark:border-pink-800/30',
   },
   {
     name: 'Prototyping',
     icon: '◈',
-    color: 'bg-blue-50 text-blue-700 border-blue-100',
+    color: 'bg-blue-50 text-blue-700 border-blue-100 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800/30',
   },
   {
     name: 'Design Systems',
     icon: '▦',
-    color: 'bg-emerald-50 text-emerald-700 border-emerald-100',
+    color: 'bg-emerald-50 text-emerald-700 border-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800/30',
   },
   {
     name: 'User Testing',
     icon: '◉',
-    color: 'bg-amber-50 text-amber-700 border-amber-100',
+    color: 'bg-amber-50 text-amber-700 border-amber-100 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/30',
   },
   {
     name: 'Interaction Design',
     icon: '◌',
-    color: 'bg-violet-50 text-violet-700 border-violet-100',
+    color: 'bg-violet-50 text-violet-700 border-violet-100 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-800/30',
   },
 ];
 

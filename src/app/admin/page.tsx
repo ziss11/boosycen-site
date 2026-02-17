@@ -1,9 +1,17 @@
 'use client';
 
+import ThemeToggle from '@/components/ui/ThemeToggle';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+const categoryColors: Record<string, string> = {
+  'Mobile App': 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
+  'Web Application': 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+  'E-Commerce': 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300',
+  Dashboard: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
+};
 
 interface Project {
   id: string;
@@ -82,29 +90,42 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className='gradient-mesh'>
+    <div className='min-h-screen bg-bg-subtle'>
       {/* Header bar */}
-      <div className='clay-card rounded-none border-x-0 border-t-0 sticky top-0 z-10'>
-        <div className='max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3'>
-          <div className='animate-fade-in'>
-            <p className='label text-muted mb-0.5'>Admin</p>
-            <div className='flex items-center gap-3'>
-              <h1 className='heading-sm text-foreground'>Projects Dashboard</h1>
-              {!loading && !error && (
-                <span className='badge'>
-                  {projects.length} {projects.length === 1 ? 'project' : 'projects'}
+      <div className='glass border-b border-b-(--border-light) sticky top-0 z-10'>
+        <div className='max-w-7xl mx-auto px-4 py-2.5 flex justify-between items-center gap-3'>
+          {/* Left: title + badge */}
+          <div className='flex items-center gap-2.5 animate-fade-in'>
+            <span className='text-xs font-semibold text-muted uppercase tracking-wider hidden sm:block'>
+              Admin /
+            </span>
+            <h1 className='text-base font-bold text-foreground'>
+              Projects Dashboard
+            </h1>
+            {!loading && !error && (
+              <span className='badge text-xs py-0.5 px-2.5 inline-flex items-center gap-1'>
+                <svg className='w-3 h-3 shrink-0' fill='none' stroke='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M3 7h18M3 12h18M3 17h18' />
+                </svg>
+                <span className='hidden sm:inline'>
+                  {projects.length}{' '}{projects.length === 1 ? 'project' : 'projects'}
                 </span>
-              )}
-            </div>
+                <span className='sm:hidden'>{projects.length}</span>
+              </span>
+            )}
           </div>
-          <div className='flex items-center gap-3'>
+
+          {/* Right: actions */}
+          <div className='flex items-center gap-2'>
+            <ThemeToggle className='text-muted' />
             <Link
               href='/admin/projects/new'
-              className='clay-button inline-flex items-center gap-2'
+              className='btn btn-primary inline-flex items-center gap-1 px-3! py-1.5! text-sm!'
+              aria-label='Add New Project'
             >
-              <span>Add New Project</span>
+              <span className='hidden sm:inline'>Add New</span>
               <svg
-                className='w-5 h-5'
+                className='w-3.5 h-3.5'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
@@ -112,7 +133,7 @@ export default function AdminDashboard() {
                 <path
                   strokeLinecap='round'
                   strokeLinejoin='round'
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   d='M12 4v16m8-8H4'
                 />
               </svg>
@@ -120,42 +141,33 @@ export default function AdminDashboard() {
             <button
               onClick={handleLogout}
               disabled={logoutLoading}
-              className='group relative inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold text-red-400 overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100'
-              style={{
-                background:
-                  'linear-gradient(145deg, rgba(255, 100, 100, 0.1), rgba(255, 80, 80, 0.05))',
-                boxShadow:
-                  '0 2px 8px rgba(255, 100, 100, 0.1), inset 0 1px 0 rgba(255,255,255,0.6)',
-                border: '1.5px solid rgba(255, 100, 100, 0.2)',
-              }}
+              className='btn inline-flex items-center gap-1.5 px-3! py-1.5! text-sm! border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-300 dark:border-red-800/40 dark:text-red-400 dark:hover:bg-red-900/20 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
+              aria-label='Logout'
             >
-              <span className='absolute inset-0 bg-linear-to-r from-red-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
               {logoutLoading ? (
-                <>
-                  <svg
-                    className='animate-spin h-5 w-5'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                  >
-                    <circle
-                      className='opacity-25'
-                      cx='12'
-                      cy='12'
-                      r='10'
-                      stroke='currentColor'
-                      strokeWidth='4'
-                    />
-                    <path
-                      className='opacity-75'
-                      fill='currentColor'
-                      d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
-                    />
-                  </svg>
-                </>
+                <svg
+                  className='animate-spin h-4 w-4'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                >
+                  <circle
+                    className='opacity-25'
+                    cx='12'
+                    cy='12'
+                    r='10'
+                    stroke='currentColor'
+                    strokeWidth='4'
+                  />
+                  <path
+                    className='opacity-75'
+                    fill='currentColor'
+                    d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                  />
+                </svg>
               ) : (
                 <>
                   <svg
-                    className='w-5 h-5 transition-all duration-300 group-hover:scale-110'
+                    className='w-4 h-4'
                     fill='none'
                     stroke='currentColor'
                     viewBox='0 0 24 24'
@@ -167,7 +179,7 @@ export default function AdminDashboard() {
                       d='M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1'
                     />
                   </svg>
-                  <span>Logout</span>
+                  <span className='hidden sm:inline'>Logout</span>
                 </>
               )}
             </button>
@@ -177,13 +189,15 @@ export default function AdminDashboard() {
 
       <div className='max-w-7xl mx-auto px-6 py-8'>
         {error && (
-          <div className='clay-card p-12 text-center animate-fade-in-up'>
+          <div className='card p-12 text-center animate-fade-in-up'>
             <div className='text-5xl mb-4'>⚠️</div>
-            <p className='text-red-600 font-semibold mb-2'>Error Loading Projects</p>
+            <p className='text-red-600 font-semibold mb-2'>
+              Error Loading Projects
+            </p>
             <p className='text-muted text-sm mb-6'>{error}</p>
             <button
               onClick={() => window.location.reload()}
-              className='clay-button'
+              className='btn btn-primary btn-sm'
             >
               Retry
             </button>
@@ -191,16 +205,21 @@ export default function AdminDashboard() {
         )}
 
         {!error && loading ? (
-          <div className='clay-card p-12 text-center animate-fade-in-up'>
+          <div className='card p-12 text-center animate-fade-in-up'>
             <div className='inline-block animate-spin h-8 w-8 border-4 border-accent-primary border-t-transparent rounded-full mb-4'></div>
             <p className='text-muted'>Loading projects...</p>
           </div>
         ) : !error && projects.length === 0 ? (
-          <div className='clay-card p-16 text-center animate-fade-in-up border-dashed'>
+          <div className='card p-16 text-center animate-fade-in-up border-dashed'>
             <div className='text-5xl mb-4'>📁</div>
             <p className='heading-sm text-foreground mb-2'>No projects yet</p>
-            <p className='text-muted text-sm mb-6'>Create your first project to get started.</p>
-            <Link href='/admin/projects/new' className='clay-button'>
+            <p className='text-muted text-sm mb-6'>
+              Create your first project to get started.
+            </p>
+            <Link
+              href='/admin/projects/new'
+              className='btn btn-primary btn-sm'
+            >
               Add New Project
             </Link>
           </div>
@@ -209,14 +228,19 @@ export default function AdminDashboard() {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className='clay-card card-hover p-6'
+                className='card card-hover p-6'
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <div className='space-y-4'>
                   {/* Header with category badges */}
-                  <div className='flex flex-wrap gap-2'>
+                  <div className='flex flex-wrap gap-1.5'>
                     {project.category.map((cat) => (
-                      <span key={cat} className='badge'>
+                      <span
+                        key={cat}
+                        className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
+                          categoryColors[cat] ?? 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                        }`}
+                      >
                         {cat}
                       </span>
                     ))}
@@ -246,21 +270,13 @@ export default function AdminDashboard() {
                   </p>
 
                   {/* Actions */}
-                  <div className='flex gap-3 pt-3 border-t border-foreground/10'>
+                  <div className='flex gap-3 pt-3 border-t border-(--border-light)'>
                     <Link
                       href={`/admin/projects/${project.id}`}
-                      className='group relative flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-foreground overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95'
-                      style={{
-                        background:
-                          'linear-gradient(145deg, rgba(139, 124, 255, 0.08), rgba(139, 124, 255, 0.04))',
-                        boxShadow:
-                          '0 2px 8px rgba(139, 124, 255, 0.1), inset 0 1px 0 rgba(255,255,255,0.6)',
-                        border: '1.5px solid rgba(139, 124, 255, 0.2)',
-                      }}
+                      className='btn btn-sm btn-secondary flex-1 text-sm!'
                     >
-                      <span className='absolute inset-0 bg-linear-to-r from-accent-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
                       <svg
-                        className='w-4 h-4 transition-all duration-300 group-hover:scale-110 group-hover:text-accent-primary'
+                        className='w-4 h-4'
                         fill='none'
                         stroke='currentColor'
                         viewBox='0 0 24 24'
@@ -272,23 +288,15 @@ export default function AdminDashboard() {
                           d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'
                         />
                       </svg>
-                      <span className='relative'>Edit</span>
+                      Edit
                     </Link>
                     <button
                       onClick={() => handleDelete(project.id)}
-                      className='group relative inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95'
-                      style={{
-                        background:
-                          'linear-gradient(145deg, rgba(255, 150, 150, 0.1), rgba(255, 100, 100, 0.05))',
-                        boxShadow:
-                          '0 2px 8px rgba(255, 100, 100, 0.1), inset 0 1px 0 rgba(255,255,255,0.6)',
-                        border: '1.5px solid rgba(255, 100, 100, 0.2)',
-                      }}
+                      className='btn btn-sm inline-flex items-center gap-2 text-sm! border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-300 dark:border-red-800/40 dark:text-red-400 dark:hover:bg-red-900/20 transition-colors duration-200'
                       title='Delete'
                     >
-                      <span className='absolute inset-0 bg-linear-to-r from-red-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
                       <svg
-                        className='h-4 w-4 text-red-400 transition-all duration-300 group-hover:scale-110'
+                        className='h-4 w-4'
                         xmlns='http://www.w3.org/2000/svg'
                         viewBox='0 0 20 20'
                         fill='currentColor'
@@ -300,7 +308,7 @@ export default function AdminDashboard() {
                           clipRule='evenodd'
                         />
                       </svg>
-                      <span className='relative text-red-400'>Delete</span>
+                      Delete
                     </button>
                   </div>
                 </div>

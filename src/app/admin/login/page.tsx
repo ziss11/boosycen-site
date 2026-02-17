@@ -84,7 +84,7 @@ export default function AdminLogin() {
             <button
               type='submit'
               disabled={loading}
-              className='clay-button w-full flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed'
+              className='btn btn-primary btn-sm w-full flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed'
             >
               {loading ? (
                 <>

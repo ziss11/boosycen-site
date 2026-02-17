@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const navLinks = [
   { href: '#about', label: 'About' },
@@ -71,16 +72,19 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className='relative px-4 py-2 text-sm font-medium text-text-muted hover:text-text-primary rounded-full hover:bg-black/5 transition-all duration-200'
+                className='relative px-4 py-2 text-sm font-medium text-text-muted hover:text-text-primary rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-200'
               >
                 {link.label}
               </Link>
             ))}
+            <ThemeToggle className='ml-1 text-text-muted' />
           </nav>
 
-          {/* Mobile: Hamburger */}
+          {/* Mobile: Theme toggle + Hamburger */}
+          <div className='md:hidden flex items-center gap-1'>
+            <ThemeToggle className='text-text-muted' />
           <button
-            className='md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-black/5 transition-colors'
+            className='flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors'
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
@@ -101,6 +105,7 @@ export default function Header() {
               }`}
             />
           </button>
+          </div>
         </div>
       </header>
 

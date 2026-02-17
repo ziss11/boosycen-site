@@ -9,10 +9,10 @@ interface ProjectCardProps {
 }
 
 const categoryColors: Record<string, string> = {
-  'Mobile App': 'bg-violet-100 text-violet-700',
-  'Web Application': 'bg-blue-100 text-blue-700',
-  'E-Commerce': 'bg-pink-100 text-pink-700',
-  Dashboard: 'bg-emerald-100 text-emerald-700',
+  'Mobile App': 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
+  'Web Application': 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+  'E-Commerce': 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300',
+  Dashboard: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
 };
 
 export default function ProjectCard({
@@ -105,7 +105,7 @@ export default function ProjectCard({
             </span>
           )}
           {hasExternalUrl && (
-            <span className='inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-semibold shadow-sm'>
+            <span className='inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-gray-800 dark:text-gray-100 text-xs font-semibold shadow-sm'>
               <svg
                 width='10'
                 height='10'
@@ -135,14 +135,14 @@ export default function ProjectCard({
             <span
               key={cat}
               className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
-                categoryColors[cat] ?? 'bg-gray-100 text-gray-700'
+                categoryColors[cat] ?? 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
               }`}
             >
               {cat}
             </span>
           ))}
           {project.category.length > 2 && (
-            <span className='text-xs font-semibold px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-500'>
+            <span className='text-xs font-semibold px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400'>
               +{project.category.length - 2}
             </span>
           )}
@@ -167,7 +167,7 @@ export default function ProjectCard({
             {project.caseStudy.results.slice(0, 2).map((result) => (
               <span
                 key={result}
-                className='inline-flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100'
+                className='inline-flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 dark:text-emerald-300 dark:bg-emerald-900/30 dark:border-emerald-800/30'
               >
                 <svg
                   width='10'

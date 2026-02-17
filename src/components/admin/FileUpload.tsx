@@ -128,7 +128,7 @@ export default function FileUpload({
               type="button"
               onClick={handleButtonClick}
               disabled={uploading}
-              className="clay-button-secondary flex-1"
+              className="btn btn-secondary btn-sm flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {uploading ? 'Uploading...' : 'Change Image'}
             </button>
@@ -136,7 +136,7 @@ export default function FileUpload({
               type="button"
               onClick={handleRemove}
               disabled={uploading}
-              className="px-4 py-2 rounded-lg bg-pastel-pink/50 hover:bg-pastel-pink transition-colors"
+              className="btn btn-sm border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-300 dark:border-red-800/40 dark:text-red-400 dark:hover:bg-red-900/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Remove
             </button>
@@ -147,7 +147,7 @@ export default function FileUpload({
           type="button"
           onClick={handleButtonClick}
           disabled={uploading}
-          className="w-full clay-card p-8 border-2 border-dashed border-foreground/20 hover:border-foreground/40 transition-colors"
+          className="w-full card p-8 border-2! border-dashed! border-foreground/20 hover:border-foreground/40 transition-colors"
         >
           <div className="text-center space-y-2">
             <div className="text-4xl">📁</div>

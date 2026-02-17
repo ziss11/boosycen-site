@@ -25,7 +25,7 @@ export default function ContactSection() {
   return (
     <section
       id='contact'
-      className='relative overflow-hidden bg-bg-dark section-py'
+      className='relative overflow-hidden bg-bg-subtle dark:bg-bg-dark section-py'
       aria-label='Contact me'
     >
       {/* Background gradients */}
@@ -33,7 +33,7 @@ export default function ContactSection() {
         className='absolute inset-0 pointer-events-none'
         aria-hidden='true'
       >
-        <div className='absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-white/10 to-transparent' />
+        <div className='absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-black/5 dark:via-white/10 to-transparent' />
         <div className='absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-accent/10 blur-[120px]' />
         <div className='absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full bg-accent-pink/8 blur-[120px]' />
       </div>
@@ -42,14 +42,14 @@ export default function ContactSection() {
         <div className='max-w-2xl mx-auto space-y-8'>
           {/* Header */}
           <ScrollReveal animation='fade-up'>
-            <span className='badge badge-dark mb-4 inline-flex'>
+            <span className='badge mb-4 inline-flex'>
               Get In Touch
             </span>
-            <h2 className='heading-xl text-text-light mb-4'>
+            <h2 className='heading-xl text-text-primary mb-4'>
               Let&apos;s build something{' '}
-              <span className='text-gradient-light'>great together</span>
+              <span className='text-gradient'>great together</span>
             </h2>
-            <p className='body-lg text-text-light-muted max-w-md'>
+            <p className='body-lg text-text-muted max-w-md'>
               Have a project in mind? Looking to collaborate? Or just want to
               chat about design? I&apos;d love to hear from you.
             </p>
@@ -64,7 +64,7 @@ export default function ContactSection() {
               {/* Email */}
               <a
                 href='mailto:boosycen@gmail.com'
-                className='group flex items-center gap-4 p-4 rounded-2xl border border-white/8 hover:border-accent/30 hover:bg-white/4 transition-all duration-300'
+                className='group flex items-center gap-4 p-4 rounded-2xl border border-(--border-light) dark:border-white/8 hover:border-accent/30 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300'
               >
                 <div className='w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center shrink-0 group-hover:bg-accent/25 transition-colors'>
                   <svg
@@ -90,17 +90,17 @@ export default function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className='text-xs font-semibold text-text-light-muted uppercase tracking-wider mb-0.5'>
+                  <p className='text-xs font-semibold text-text-muted uppercase tracking-wider mb-0.5'>
                     Email
                   </p>
-                  <span className='text-text-light font-medium text-sm group-hover:text-accent-light transition-colors'>
+                  <span className='text-text-primary font-medium text-sm group-hover:text-accent transition-colors'>
                     boosycen@gmail.com
                   </span>
                 </div>
               </a>
 
               {/* Availability */}
-              <div className='flex items-center gap-4 p-4 rounded-2xl border border-white/8'>
+              <div className='flex items-center gap-4 p-4 rounded-2xl border border-(--border-light) dark:border-white/8'>
                 <div className='w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center shrink-0'>
                   <svg
                     width='18'
@@ -126,12 +126,12 @@ export default function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className='text-xs font-semibold text-text-light-muted uppercase tracking-wider mb-0.5'>
+                  <p className='text-xs font-semibold text-text-muted uppercase tracking-wider mb-0.5'>
                     Availability
                   </p>
                   <div className='flex items-center gap-2'>
                     <span className='w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot shrink-0' />
-                    <span className='text-text-light font-medium text-sm'>
+                    <span className='text-text-primary font-medium text-sm'>
                       Open to new projects
                     </span>
                   </div>
@@ -146,7 +146,7 @@ export default function ContactSection() {
             delay={200}
           >
             <div className='space-y-3'>
-              <p className='text-xs font-semibold text-text-light-muted uppercase tracking-wider'>
+              <p className='text-xs font-semibold text-text-muted uppercase tracking-wider'>
                 Find me on
               </p>
               <div className='flex flex-col gap-3'>
@@ -156,16 +156,16 @@ export default function ContactSection() {
                     href={link.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='group flex items-center gap-3 p-3.5 rounded-xl border border-white/8 hover:border-accent/30 hover:bg-white/4 transition-all duration-300'
+                    className='group flex items-center gap-3 p-3.5 rounded-xl border border-(--border-light) dark:border-white/8 hover:border-accent/30 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300'
                   >
-                    <div className='text-accent-light group-hover:text-white transition-colors shrink-0'>
+                    <div className='text-accent group-hover:text-accent-hover transition-colors shrink-0'>
                       {link.icon}
                     </div>
                     <div>
-                      <span className='text-sm font-semibold text-text-light block'>
+                      <span className='text-sm font-semibold text-text-primary block'>
                         {link.name}
                       </span>
-                      <span className='text-xs text-text-light-muted'>
+                      <span className='text-xs text-text-muted'>
                         {link.description}
                       </span>
                     </div>
@@ -174,7 +174,7 @@ export default function ContactSection() {
                       height='14'
                       viewBox='0 0 14 14'
                       fill='none'
-                      className='ml-auto text-text-light-muted group-hover:translate-x-1 transition-transform'
+                      className='ml-auto text-text-muted group-hover:translate-x-1 transition-transform'
                       aria-hidden='true'
                     >
                       <path

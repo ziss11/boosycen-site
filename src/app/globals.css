@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ========================================
    DESIGN SYSTEM — Bold Creative Minimalism
    ======================================== */
@@ -60,24 +62,89 @@
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* ========================================
+   DARK MODE OVERRIDES
+   ======================================== */
+
+html.dark {
+  /* CSS vars used directly (body bg, btn-secondary text, etc.) */
+  --bg-primary: #0D0D14;
+  --bg-subtle: #14141F;
+  --text-primary: #F9FAFB;
+  --text-muted: rgba(249, 250, 251, 0.55);
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.3);
+  /* Tailwind @theme CSS variable overrides (for bg-bg-primary, text-text-primary etc.) */
+  --color-bg-primary: #0D0D14;
+  --color-bg-subtle: #14141F;
+  --color-text-primary: #F9FAFB;
+  --color-text-muted: rgba(249, 250, 251, 0.55);
+  --color-background: #0D0D14;
+  --color-foreground: #F9FAFB;
+}
+
+html.dark .card {
+  background: #14141F;
+  border-color: rgba(255,255,255,0.08);
+}
+
+html.dark .glass {
+  background: rgba(13,13,20,0.85);
+  border-color: rgba(255,255,255,0.08);
+}
+
+html.dark .clay-card {
+  background: linear-gradient(145deg, rgba(28,28,42,0.97), rgba(20,20,31,0.95));
+  border-color: rgba(139, 124, 255, 0.2);
+}
+
+html.dark .clay-input {
+  background: rgba(20, 20, 31, 0.95);
+  color: #F9FAFB;
+  border-color: rgba(139, 124, 255, 0.35);
+}
+
+/* Chip component: hardcoded white bg → dark override */
+html.dark .chip {
+  background: #1C1C2A;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+/* Admin clay button (Cancel): light gradient → dark override */
+html.dark .admin-btn-cancel {
+  background: linear-gradient(145deg, rgba(28,28,42,0.95), rgba(20,20,31,0.9)) !important;
+  box-shadow: 0 4px 15px rgba(139,124,255,0.1), inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(0,0,0,0.2) !important;
+}
+
+html.dark .gradient-mesh {
+  background: linear-gradient(135deg, #0a0014 0%, #0d0d1a 30%, #0D0D14 55%, #001a14 80%, #0a0014 100%);
+}
+
 /* Tailwind v4 Theme Integration */
+
+/* Dynamic colors — NOT inline so Tailwind uses var(--color-*) references
+   that can be overridden by html.dark { --color-bg-primary: ... } */
+@theme {
+  --color-bg-primary: #FAFAF9;
+  --color-bg-subtle: #F5F4F2;
+  --color-text-primary: #111827;
+  --color-text-muted: #6B7280;
+  --color-background: #FAFAF9;
+  --color-foreground: #111827;
+}
+
 @theme inline {
-  /* Brand palette */
+  /* Brand palette (static — no dark override needed) */
   --color-accent: #7C3AED;
   --color-accent-light: #A78BFA;
   --color-accent-pink: #EC4899;
-  --color-bg-primary: #FAFAF9;
-  --color-bg-subtle: #F5F4F2;
   --color-bg-dark: #0D0D14;
   --color-bg-dark-card: #14141F;
   --color-bg-dark-hover: #1C1C2A;
-  --color-text-primary: #111827;
-  --color-text-muted: #6B7280;
   --color-text-light: #F9FAFB;
-
-  /* Legacy aliases (keep for backward compat) */
-  --color-background: #FAFAF9;
-  --color-foreground: #111827;
   --color-pastel-pink: #ffd6e0;
   --color-pastel-lavender: #e0d6ff;
   --color-pastel-mint: #d6fff0;
@@ -725,6 +792,40 @@ body {
 
 .clay-input:hover:not(:focus) {
   border-color: rgba(139, 124, 255, 0.5);
+}
+
+/* ========================================
+   SITE INPUT — matches main design system
+   ======================================== */
+
+.site-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s var(--ease-default), box-shadow 0.2s var(--ease-default);
+  box-shadow: var(--shadow-xs);
+}
+
+html.dark .site-input {
+  background: rgba(20, 20, 31, 0.9);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #F9FAFB;
+}
+
+.site-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.site-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 /* ========================================
