@@ -9,10 +9,14 @@ interface ProjectCardProps {
 }
 
 const categoryColors: Record<string, string> = {
-  'Mobile App': 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
-  'Web Application': 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-  'E-Commerce': 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300',
-  Dashboard: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
+  'Mobile App':
+    'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
+  'Web Application':
+    'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+  'E-Commerce':
+    'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300',
+  Dashboard:
+    'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
 };
 
 export default function ProjectCard({
@@ -31,7 +35,7 @@ export default function ProjectCard({
       {/* Thumbnail */}
       <div
         className={`relative overflow-hidden shrink-0 ${
-          featured ? 'aspect-video' : 'aspect-[4/3]'
+          featured ? 'aspect-video' : 'aspect-4/3'
         } ${project.color}`}
       >
         {project.thumbnail ? (
@@ -135,7 +139,8 @@ export default function ProjectCard({
             <span
               key={cat}
               className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
-                categoryColors[cat] ?? 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                categoryColors[cat] ??
+                'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
               }`}
             >
               {cat}
