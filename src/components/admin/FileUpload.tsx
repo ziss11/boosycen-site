@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, ChangeEvent } from 'react';
 import Image from 'next/image';
+import { ChangeEvent, useRef, useState } from 'react';
 
 interface FileUploadProps {
   value: string;
@@ -27,7 +27,13 @@ export default function FileUpload({
     setError('');
 
     // Validate file type
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+    const allowedTypes = [
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+      'image/gif',
+      'image/webp',
+    ];
     if (!allowedTypes.includes(file.type)) {
       setError('Please select a valid image file (JPEG, PNG, GIF, or WebP)');
       return;
@@ -97,46 +103,46 @@ export default function FileUpload({
   };
 
   return (
-    <div className="space-y-3">
-      <label className="block text-sm font-medium text-foreground">
+    <div className='space-y-3'>
+      <label className='block text-sm font-medium text-foreground'>
         {label}
       </label>
 
       {/* Hidden file input */}
       <input
         ref={fileInputRef}
-        type="file"
-        accept="image/*"
+        type='file'
+        accept='image/*'
         onChange={handleFileSelect}
-        className="hidden"
+        className='hidden'
         disabled={uploading}
       />
 
       {/* Preview or upload button */}
       {preview ? (
-        <div className="space-y-3">
-          <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-foreground/10">
+        <div className='space-y-3'>
+          <div className='relative w-full aspect-video rounded-lg overflow-hidden border border-foreground/10'>
             <Image
               src={preview}
-              alt="Preview"
+              alt='Preview'
               fill
-              className="object-cover"
+              className='object-cover'
             />
           </div>
-          <div className="flex gap-2">
+          <div className='flex gap-2'>
             <button
-              type="button"
+              type='button'
               onClick={handleButtonClick}
               disabled={uploading}
-              className="btn btn-secondary btn-sm flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
+              className='btn btn-secondary flex-1 px-2.5! py-2! text-sm! disabled:opacity-50 disabled:cursor-not-allowed'
             >
               {uploading ? 'Uploading...' : 'Change Image'}
             </button>
             <button
-              type="button"
+              type='button'
               onClick={handleRemove}
               disabled={uploading}
-              className="btn btn-sm border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-300 dark:border-red-800/40 dark:text-red-400 dark:hover:bg-red-900/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className='btn border border-red-200 text-red-500 hover:bg-red-50 hover:border-red-300 dark:border-red-800/40 dark:text-red-400 dark:hover:bg-red-900/20 transition-colors px-4! py-2! text-sm! disabled:opacity-50 disabled:cursor-not-allowed'
             >
               Remove
             </button>
@@ -144,17 +150,17 @@ export default function FileUpload({
         </div>
       ) : (
         <button
-          type="button"
+          type='button'
           onClick={handleButtonClick}
           disabled={uploading}
-          className="w-full card p-8 border-2! border-dashed! border-foreground/20 hover:border-foreground/40 transition-colors"
+          className='w-full card p-8 border-2! border-dashed! border-foreground/20 hover:border-foreground/40 transition-colors'
         >
-          <div className="text-center space-y-2">
-            <div className="text-4xl">📁</div>
-            <p className="text-sm text-muted">
+          <div className='text-center space-y-2'>
+            <div className='text-4xl'>📁</div>
+            <p className='text-sm text-muted'>
               {uploading ? 'Uploading...' : 'Click to upload an image'}
             </p>
-            <p className="text-xs text-muted/70">
+            <p className='text-xs text-muted/70'>
               JPEG, PNG, GIF, or WebP (max 5MB)
             </p>
           </div>
@@ -163,15 +169,15 @@ export default function FileUpload({
 
       {/* Error message */}
       {error && (
-        <p className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded">
+        <p className='text-sm text-red-500 bg-red-50 px-3 py-2 rounded'>
           {error}
         </p>
       )}
 
       {/* Loading indicator */}
       {uploading && (
-        <div className="flex items-center gap-2 text-sm text-muted">
-          <div className="w-4 h-4 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
+        <div className='flex items-center gap-2 text-sm text-muted'>
+          <div className='w-4 h-4 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin' />
           <span>Uploading...</span>
         </div>
       )}

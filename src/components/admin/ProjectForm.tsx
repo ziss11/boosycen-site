@@ -65,26 +65,36 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className='space-y-8 max-w-4xl card p-8 animate-fade-in-up delay-100'
+      className='space-y-6 max-w-4xl card p-6 animate-fade-in-up delay-100'
     >
       {error && (
         <div className='flex items-start gap-3 px-4 py-3.5 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700'>
-          <svg className='w-5 h-5 mt-0.5 shrink-0 text-red-500' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z' />
+          <svg
+            className='w-5 h-5 mt-0.5 shrink-0 text-red-500'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z'
+            />
           </svg>
           <span className='font-medium'>{error}</span>
         </div>
       )}
 
       {/* Section 1: Project Details */}
-      <div className='space-y-5'>
-        <h3 className='heading-sm text-foreground border-b border-foreground/10 pb-3'>
+      <div className='space-y-4'>
+        <h3 className='text-sm font-bold text-foreground uppercase tracking-wide border-b border-foreground/10 pb-2'>
           Project Details
         </h3>
 
-        <div className='grid grid-cols-1 gap-y-5 gap-x-4 sm:grid-cols-6'>
+        <div className='grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6'>
           <div className='sm:col-span-4'>
-            <label className='block text-sm font-semibold text-foreground mb-2'>
+            <label className='block text-xs font-semibold text-foreground mb-1.5 uppercase tracking-wide'>
               Title
             </label>
             <input
@@ -94,9 +104,11 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
               value={formData.title}
               onChange={handleChange}
               placeholder='e.g. E-Commerce Redesign'
-              className='site-input text-foreground placeholder:text-muted'
+              className='site-input py-2! px-3! text-sm! text-foreground placeholder:text-muted'
             />
-            <p className='text-xs text-muted mt-1.5'>Keep it concise — ideally under 60 characters</p>
+            <p className='text-xs text-muted mt-1.5'>
+              Keep it concise — ideally under 60 characters
+            </p>
           </div>
 
           <div className='sm:col-span-6'>
@@ -109,29 +121,29 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
           </div>
 
           <div className='sm:col-span-6'>
-            <label className='block text-sm font-semibold text-foreground mb-2'>
+            <label className='block text-xs font-semibold text-foreground mb-1.5 uppercase tracking-wide'>
               Description
             </label>
             <textarea
               name='description'
-              rows={4}
+              rows={3}
               required
               value={formData.description}
               onChange={handleChange}
               placeholder='Briefly describe the project, its goals and your role...'
-              className='site-input text-foreground placeholder:text-muted resize-none'
+              className='site-input py-2! px-3! text-sm! text-foreground placeholder:text-muted resize-none'
             />
           </div>
         </div>
       </div>
 
       {/* Section 2: Media & Links */}
-      <div className='space-y-5'>
-        <h3 className='heading-sm text-foreground border-b border-foreground/10 pb-3'>
+      <div className='space-y-4'>
+        <h3 className='text-sm font-bold text-foreground uppercase tracking-wide border-b border-foreground/10 pb-2'>
           Media &amp; Links
         </h3>
 
-        <div className='grid grid-cols-1 gap-y-5 gap-x-4 sm:grid-cols-6'>
+        <div className='grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6'>
           <div className='sm:col-span-6'>
             <FileUpload
               value={formData.thumbnail || ''}
@@ -143,8 +155,9 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
           </div>
 
           <div className='sm:col-span-6'>
-            <label className='block text-sm font-semibold text-foreground mb-2'>
-              External URL <span className='font-normal text-muted'>(optional)</span>
+            <label className='block text-xs font-semibold text-foreground mb-1.5 uppercase tracking-wide'>
+              External URL{' '}
+              <span className='font-normal text-muted'>(optional)</span>
             </label>
             <input
               type='url'
@@ -152,20 +165,21 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
               value={formData.externalUrl || ''}
               onChange={handleChange}
               placeholder='https://...'
-              className='site-input text-foreground placeholder:text-muted'
+              className='site-input py-2! px-3! text-sm! text-foreground placeholder:text-muted'
             />
             <p className='text-xs text-muted mt-1.5'>
-              If set, the project card will link to this URL (Figma, Dribbble, etc.)
+              If set, the project card will link to this URL (Figma, Dribbble,
+              etc.)
             </p>
           </div>
         </div>
       </div>
 
-      <div className='flex flex-col sm:flex-row justify-end gap-4 pt-6'>
+      <div className='flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-foreground/10'>
         <button
           type='button'
           onClick={() => router.back()}
-          className='btn btn-secondary btn-sm flex items-center gap-2'
+          className='btn btn-secondary inline-flex items-center gap-1.5 px-4! py-2! text-sm!'
         >
           <svg
             className='w-4 h-4'
@@ -185,7 +199,7 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
         <button
           type='submit'
           disabled={loading}
-          className='btn btn-primary btn-sm flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed'
+          className='btn btn-primary inline-flex items-center gap-1.5 px-4! py-2! text-sm! disabled:opacity-50 disabled:cursor-not-allowed'
         >
           {loading ? (
             <>

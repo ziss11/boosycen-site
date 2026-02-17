@@ -18,12 +18,18 @@ const PREDEFINED_CATEGORIES = [
 ];
 
 const categoryColors: Record<string, string> = {
-  'Mobile App':      'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-800/30',
-  'Web Application': 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800/30',
-  'E-Commerce':      'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-900/30 dark:text-pink-300 dark:border-pink-800/30',
-  Dashboard:         'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800/30',
-  Branding:          'bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/30',
-  'UI/UX Design':    'bg-cyan-100 text-cyan-700 border-cyan-200 dark:bg-cyan-900/30 dark:text-cyan-300 dark:border-cyan-800/30',
+  'Mobile App':
+    'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-800/30',
+  'Web Application':
+    'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800/30',
+  'E-Commerce':
+    'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-900/30 dark:text-pink-300 dark:border-pink-800/30',
+  Dashboard:
+    'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800/30',
+  Branding:
+    'bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800/30',
+  'UI/UX Design':
+    'bg-cyan-100 text-cyan-700 border-cyan-200 dark:bg-cyan-900/30 dark:text-cyan-300 dark:border-cyan-800/30',
 };
 
 export default function CategoryInput({
@@ -98,13 +104,13 @@ export default function CategoryInput({
             onChange={(e) => setCustomCategory(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder='Enter custom category'
-            className='site-input flex-1'
+            className='site-input flex-1 py-2! px-3! text-sm!'
           />
           <button
             type='button'
             onClick={addCustomCategory}
             disabled={!customCategory.trim()}
-            className='btn btn-secondary btn-sm disabled:opacity-50 disabled:cursor-not-allowed'
+            className='btn btn-secondary px-4! py-2! text-sm! disabled:opacity-50 disabled:cursor-not-allowed'
           >
             Add
           </button>
