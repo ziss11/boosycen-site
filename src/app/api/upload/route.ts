@@ -27,16 +27,17 @@ export async function POST(request: NextRequest) {
     if (!file || !(file instanceof File)) {
       return NextResponse.json(
         { error: 'No file provided or invalid file type' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     // Validate filename for path traversal
-    if (file.name.includes('..') || file.name.includes('/') || file.name.includes('\\')) {
-      return NextResponse.json(
-        { error: 'Invalid filename' },
-        { status: 400 }
-      );
+    if (
+      file.name.includes('..') ||
+      file.name.includes('/') ||
+      file.name.includes('\\')
+    ) {
+      return NextResponse.json({ error: 'Invalid filename' }, { status: 400 });
     }
 
     // Validate file type

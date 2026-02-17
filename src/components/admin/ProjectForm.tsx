@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
+import { generateColorGradient } from '@/lib/color-generator';
 import { Project } from '@/lib/project-service';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import FileUpload from './FileUpload';
 import CategoryInput from './CategoryInput';
-import { generateColorGradient } from '@/lib/color-generator';
+import FileUpload from './FileUpload';
 
 interface ProjectFormProps {
   initialData?: Project;
@@ -65,77 +65,99 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className='space-y-6 max-w-4xl clay-card p-8 animate-fade-in-up delay-100'
+      className='space-y-8 max-w-4xl clay-card p-8 animate-fade-in-up delay-100'
     >
       {error && (
-        <div className='px-4 py-3 rounded-lg bg-pastel-pink text-accent-secondary text-sm font-medium'>
-          {error}
+        <div className='flex items-start gap-3 px-4 py-3.5 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700'>
+          <svg className='w-5 h-5 mt-0.5 shrink-0 text-red-500' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z' />
+          </svg>
+          <span className='font-medium'>{error}</span>
         </div>
       )}
 
-      <div className='grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
-        <div className='sm:col-span-4'>
-          <label className='block text-sm font-semibold text-foreground mb-2'>
-            Title
-          </label>
-          <input
-            type='text'
-            name='title'
-            required
-            value={formData.title}
-            onChange={handleChange}
-            className='clay-input w-full text-foreground placeholder:text-muted'
-          />
-        </div>
+      {/* Section 1: Project Details */}
+      <div className='space-y-5'>
+        <h3 className='heading-sm text-foreground border-b border-foreground/10 pb-3'>
+          Project Details
+        </h3>
 
-        <div className='sm:col-span-6'>
-          <CategoryInput
-            value={formData.category || []}
-            onChange={(categories) =>
-              setFormData((prev) => ({ ...prev, category: categories }))
-            }
-          />
-        </div>
+        <div className='grid grid-cols-1 gap-y-5 gap-x-4 sm:grid-cols-6'>
+          <div className='sm:col-span-4'>
+            <label className='block text-sm font-semibold text-foreground mb-2'>
+              Title
+            </label>
+            <input
+              type='text'
+              name='title'
+              required
+              value={formData.title}
+              onChange={handleChange}
+              placeholder='e.g. E-Commerce Redesign'
+              className='clay-input text-foreground placeholder:text-muted'
+            />
+            <p className='text-xs text-muted mt-1.5'>Keep it concise — ideally under 60 characters</p>
+          </div>
 
-        <div className='sm:col-span-6'>
-          <label className='block text-sm font-semibold text-foreground mb-2'>
-            Description
-          </label>
-          <textarea
-            name='description'
-            rows={3}
-            required
-            value={formData.description}
-            onChange={handleChange}
-            className='clay-input w-full text-foreground placeholder:text-muted resize-none'
-          />
-        </div>
+          <div className='sm:col-span-6'>
+            <CategoryInput
+              value={formData.category || []}
+              onChange={(categories) =>
+                setFormData((prev) => ({ ...prev, category: categories }))
+              }
+            />
+          </div>
 
-        <div className='sm:col-span-6'>
-          <FileUpload
-            value={formData.thumbnail || ''}
-            onChange={(url) =>
-              setFormData((prev) => ({ ...prev, thumbnail: url }))
-            }
-            label='Project Thumbnail'
-          />
+          <div className='sm:col-span-6'>
+            <label className='block text-sm font-semibold text-foreground mb-2'>
+              Description
+            </label>
+            <textarea
+              name='description'
+              rows={4}
+              required
+              value={formData.description}
+              onChange={handleChange}
+              placeholder='Briefly describe the project, its goals and your role...'
+              className='clay-input text-foreground placeholder:text-muted resize-none'
+            />
+          </div>
         </div>
+      </div>
 
-        <div className='sm:col-span-6'>
-          <label className='block text-sm font-semibold text-foreground mb-2'>
-            External URL (opsional)
-          </label>
-          <input
-            type='url'
-            name='externalUrl'
-            value={formData.externalUrl || ''}
-            onChange={handleChange}
-            placeholder='https://...'
-            className='clay-input w-full text-foreground placeholder:text-muted'
-          />
-          <p className='text-xs text-muted mt-1'>
-            Jika diisi, card project akan mengarah ke URL eksternal ini (Figma, Dribbble, dll)
-          </p>
+      {/* Section 2: Media & Links */}
+      <div className='space-y-5'>
+        <h3 className='heading-sm text-foreground border-b border-foreground/10 pb-3'>
+          Media &amp; Links
+        </h3>
+
+        <div className='grid grid-cols-1 gap-y-5 gap-x-4 sm:grid-cols-6'>
+          <div className='sm:col-span-6'>
+            <FileUpload
+              value={formData.thumbnail || ''}
+              onChange={(url) =>
+                setFormData((prev) => ({ ...prev, thumbnail: url }))
+              }
+              label='Project Thumbnail'
+            />
+          </div>
+
+          <div className='sm:col-span-6'>
+            <label className='block text-sm font-semibold text-foreground mb-2'>
+              External URL <span className='font-normal text-muted'>(optional)</span>
+            </label>
+            <input
+              type='url'
+              name='externalUrl'
+              value={formData.externalUrl || ''}
+              onChange={handleChange}
+              placeholder='https://...'
+              className='clay-input text-foreground placeholder:text-muted'
+            />
+            <p className='text-xs text-muted mt-1.5'>
+              If set, the project card will link to this URL (Figma, Dribbble, etc.)
+            </p>
+          </div>
         </div>
       </div>
 
@@ -145,8 +167,10 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
           onClick={() => router.back()}
           className='group relative px-6 py-3 rounded-xl font-semibold text-foreground overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95'
           style={{
-            background: 'linear-gradient(145deg, rgba(255,255,255,0.9), rgba(245,245,245,0.85))',
-            boxShadow: '0 4px 15px rgba(139, 124, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.05)',
+            background:
+              'linear-gradient(145deg, rgba(255,255,255,0.9), rgba(245,245,245,0.85))',
+            boxShadow:
+              '0 4px 15px rgba(139, 124, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.05)',
             border: '2px solid rgba(139, 124, 255, 0.25)',
           }}
         >
@@ -173,10 +197,11 @@ export default function ProjectForm({ initialData, action }: ProjectFormProps) {
           className='group relative px-8 py-3 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100'
           style={{
             background: 'linear-gradient(145deg, #8b7cff, #7c6cef)',
-            boxShadow: '0 4px 15px rgba(139, 124, 255, 0.4), inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 0 rgba(0,0,0,0.1)',
+            boxShadow:
+              '0 4px 15px rgba(139, 124, 255, 0.4), inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 0 rgba(0,0,0,0.1)',
           }}
         >
-          <span className='absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
+          <span className='absolute inset-0 bg-linear-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
           <span className='relative flex items-center justify-center gap-2'>
             {loading ? (
               <>

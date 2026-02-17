@@ -1,12 +1,23 @@
-import Clay3DIcon from '@/components/ui/Clay3DIcon';
+'use client';
+
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
 const socialLinks = [
   {
     name: 'LinkedIn',
-    icon: '💼',
-    href: 'https://linkedin.com',
-    gradient: 'lavender' as const,
+    href: 'https://www.linkedin.com/in/griselda-putri/',
+    description: "Let's connect professionally",
+    icon: (
+      <svg
+        width='20'
+        height='20'
+        viewBox='0 0 20 20'
+        fill='currentColor'
+        aria-hidden='true'
+      >
+        <path d='M16.667 2.5H3.333A.833.833 0 002.5 3.333v13.334a.833.833 0 00.833.833h13.334a.833.833 0 00.833-.833V3.333a.833.833 0 00-.833-.833zM6.667 14.167H4.583V8.333h2.084v5.834zM5.625 7.5a1.042 1.042 0 110-2.083 1.042 1.042 0 010 2.083zM15.417 14.167h-2.084v-2.917c0-.775-.014-1.772-1.08-1.772-1.08 0-1.245.843-1.245 1.714v2.975H8.924V8.333h2v.792h.028c.277-.525.955-1.08 1.966-1.08 2.1 0 2.49 1.383 2.49 3.18v2.942h.009z' />
+      </svg>
+    ),
   },
 ];
 
@@ -14,69 +25,166 @@ export default function ContactSection() {
   return (
     <section
       id='contact'
-      className='section bg-linear-to-b from-pastel-lavender/10 to-background'
+      className='relative overflow-hidden bg-bg-dark section-py'
+      aria-label='Contact me'
     >
-      <div className='container'>
-        <div className='max-w-2xl mx-auto text-center'>
+      {/* Background gradients */}
+      <div
+        className='absolute inset-0 pointer-events-none'
+        aria-hidden='true'
+      >
+        <div className='absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-white/10 to-transparent' />
+        <div className='absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-accent/10 blur-[120px]' />
+        <div className='absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full bg-accent-pink/8 blur-[120px]' />
+      </div>
+
+      <div className='container relative z-10'>
+        <div className='max-w-2xl mx-auto space-y-8'>
+          {/* Header */}
           <ScrollReveal animation='fade-up'>
-            <span className='inline-block px-4 py-2 rounded-full bg-accent-primary/10 text-accent-primary font-medium text-sm mb-4'>
+            <span className='badge badge-dark mb-4 inline-flex'>
               Get In Touch
             </span>
-            <h2 className='heading-lg mb-4'>
-              Let&apos;s Create Something{' '}
-              <span className='bg-linear-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
-                Amazing
-              </span>{' '}
-              Together
+            <h2 className='heading-xl text-text-light mb-4'>
+              Let&apos;s build something{' '}
+              <span className='text-gradient-light'>great together</span>
             </h2>
-            <p className='text-muted text-lg mb-8'>
-              Have a project in mind? I&apos;d love to hear about it. Whether
-              you need a complete product design or just want to chat about
-              design, feel free to reach out.
+            <p className='body-lg text-text-light-muted max-w-md'>
+              Have a project in mind? Looking to collaborate? Or just want to
+              chat about design? I&apos;d love to hear from you.
             </p>
           </ScrollReveal>
 
-          {/* Email */}
+          {/* Contact details */}
           <ScrollReveal
             animation='fade-up'
             delay={100}
           >
-            <div className='clay-card p-8 mb-8'>
-              <h3 className='font-semibold mb-2'>Email me at</h3>
+            <div className='space-y-4'>
+              {/* Email */}
               <a
-                href='mailto:griselda@designer.com'
-                className='text-2xl text-accent-primary hover:underline font-medium'
+                href='mailto:boosycen@gmail.com'
+                className='group flex items-center gap-4 p-4 rounded-2xl border border-white/8 hover:border-accent/30 hover:bg-white/4 transition-all duration-300'
               >
-                griselda@designer.com
+                <div className='w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center shrink-0 group-hover:bg-accent/25 transition-colors'>
+                  <svg
+                    width='18'
+                    height='18'
+                    viewBox='0 0 18 18'
+                    fill='none'
+                    aria-hidden='true'
+                  >
+                    <path
+                      d='M2.25 4.5h13.5v10.5H2.25V4.5z'
+                      stroke='#A78BFA'
+                      strokeWidth='1.5'
+                      strokeLinejoin='round'
+                    />
+                    <path
+                      d='M2.25 4.5L9 10.5l6.75-6'
+                      stroke='#A78BFA'
+                      strokeWidth='1.5'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p className='text-xs font-semibold text-text-light-muted uppercase tracking-wider mb-0.5'>
+                    Email
+                  </p>
+                  <span className='text-text-light font-medium text-sm group-hover:text-accent-light transition-colors'>
+                    boosycen@gmail.com
+                  </span>
+                </div>
               </a>
+
+              {/* Availability */}
+              <div className='flex items-center gap-4 p-4 rounded-2xl border border-white/8'>
+                <div className='w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center shrink-0'>
+                  <svg
+                    width='18'
+                    height='18'
+                    viewBox='0 0 18 18'
+                    fill='none'
+                    aria-hidden='true'
+                  >
+                    <circle
+                      cx='9'
+                      cy='9'
+                      r='7'
+                      stroke='#34d399'
+                      strokeWidth='1.5'
+                    />
+                    <path
+                      d='M9 5.5V9l2.5 2.5'
+                      stroke='#34d399'
+                      strokeWidth='1.5'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p className='text-xs font-semibold text-text-light-muted uppercase tracking-wider mb-0.5'>
+                    Availability
+                  </p>
+                  <div className='flex items-center gap-2'>
+                    <span className='w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot shrink-0' />
+                    <span className='text-text-light font-medium text-sm'>
+                      Open to new projects
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
 
-          {/* Social Links */}
+          {/* Social links */}
           <ScrollReveal
             animation='fade-up'
             delay={200}
           >
-            <div className='space-y-4'>
-              <h3 className='font-semibold'>Connect with me</h3>
-              <div className='flex flex-wrap justify-center gap-4'>
+            <div className='space-y-3'>
+              <p className='text-xs font-semibold text-text-light-muted uppercase tracking-wider'>
+                Find me on
+              </p>
+              <div className='flex flex-col gap-3'>
                 {socialLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='group flex items-center gap-3 p-4 rounded-lg bg-white/50 hover:bg-white/80 transition-all hover:shadow-lg hover:-translate-y-1'
+                    className='group flex items-center gap-3 p-3.5 rounded-xl border border-white/8 hover:border-accent/30 hover:bg-white/4 transition-all duration-300'
                   >
-                    <Clay3DIcon
-                      gradient={link.gradient}
-                      size='sm'
+                    <div className='text-accent-light group-hover:text-white transition-colors shrink-0'>
+                      {link.icon}
+                    </div>
+                    <div>
+                      <span className='text-sm font-semibold text-text-light block'>
+                        {link.name}
+                      </span>
+                      <span className='text-xs text-text-light-muted'>
+                        {link.description}
+                      </span>
+                    </div>
+                    <svg
+                      width='14'
+                      height='14'
+                      viewBox='0 0 14 14'
+                      fill='none'
+                      className='ml-auto text-text-light-muted group-hover:translate-x-1 transition-transform'
+                      aria-hidden='true'
                     >
-                      <span className='text-sm'>{link.icon}</span>
-                    </Clay3DIcon>
-                    <span className='font-medium group-hover:text-accent-primary transition-colors'>
-                      {link.name}
-                    </span>
+                      <path
+                        d='M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5'
+                        stroke='currentColor'
+                        strokeWidth='1.5'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
                   </a>
                 ))}
               </div>

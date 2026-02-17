@@ -1,151 +1,198 @@
-import Clay3DIcon from '@/components/ui/Clay3DIcon';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
 const skills = [
-  { name: 'UI Design', icon: '🎨', gradient: 'lavender' as const },
-  { name: 'UX Research', icon: '🔍', gradient: 'pink' as const },
-  { name: 'Prototyping', icon: '⚡', gradient: 'mint' as const },
-  { name: 'Design Systems', icon: '📐', gradient: 'peach' as const },
-  { name: 'Figma', icon: '🖌️', gradient: 'sky' as const },
-  { name: 'User Testing', icon: '👥', gradient: 'lavender' as const },
+  {
+    name: 'UI Design',
+    icon: '▣',
+    color: 'bg-violet-50 text-violet-700 border-violet-100',
+  },
+  {
+    name: 'UX Research',
+    icon: '◎',
+    color: 'bg-pink-50 text-pink-700 border-pink-100',
+  },
+  {
+    name: 'Prototyping',
+    icon: '◈',
+    color: 'bg-blue-50 text-blue-700 border-blue-100',
+  },
+  {
+    name: 'Design Systems',
+    icon: '▦',
+    color: 'bg-emerald-50 text-emerald-700 border-emerald-100',
+  },
+  {
+    name: 'User Testing',
+    icon: '◉',
+    color: 'bg-amber-50 text-amber-700 border-amber-100',
+  },
+  {
+    name: 'Interaction Design',
+    icon: '◌',
+    color: 'bg-violet-50 text-violet-700 border-violet-100',
+  },
 ];
 
-const tools = ['Figma', 'Sketch', 'Adobe XD', 'Framer', 'Principle', 'Notion'];
+const tools = [{ name: 'Figma', color: '#F24E1E' }];
+
+const highlights = [
+  { number: '1+', label: 'Years crafting\ndigital experiences' },
+  { number: '10+', label: 'Projects shipped\nacross platforms' },
+];
 
 export default function AboutSection() {
   return (
     <section
       id='about'
-      className='section bg-background'
+      className='section-py bg-bg-subtle'
+      aria-label='About me'
     >
       <div className='container'>
-        <div className='grid lg:grid-cols-2 gap-16 items-center'>
-          {/* Portrait / Visual */}
-          <ScrollReveal animation='slide-left'>
-            <div className='relative'>
-              {/* Main Image Container */}
-              <div className='relative w-full aspect-4/5 max-w-md mx-auto rounded-xl bg-linear-to-br from-pastel-lavender to-pastel-pink shadow-lg overflow-hidden'>
-                {/* Placeholder for portrait - could add real image */}
-                <div className='absolute inset-0 flex items-center justify-center'>
-                  <div className='text-center space-y-4'>
-                    <div className='text-9xl opacity-80'>👩‍💻</div>
-                    <p className='text-lg font-medium text-foreground/60'>
-                      Your Photo Here
-                    </p>
-                  </div>
+        {/* Section header */}
+        <ScrollReveal
+          animation='fade-up'
+          className='text-center mb-10 md:mb-14'
+        >
+          <span className='badge mb-4 inline-flex'>About Me</span>
+          <h2 className='heading-xl'>
+            Designing with{' '}
+            <span className='text-gradient'>Purpose & Empathy</span>
+          </h2>
+        </ScrollReveal>
+
+        {/* Bento Grid */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5'>
+          {/* Card 1: Bio (large — spans 2 cols on lg) */}
+          <ScrollReveal
+            animation='slide-left'
+            className='md:col-span-2 lg:col-span-2'
+          >
+            <div className='card card-hover h-full p-6 md:p-8 flex flex-col sm:flex-row gap-6 md:gap-8 items-start'>
+              {/* Bio text */}
+              <div className='flex-1 space-y-4'>
+                <div>
+                  <h3 className='heading-sm mb-1 text-text-primary'>
+                    Griselda Putri Cahyaningtyas
+                  </h3>
+                  <p className='text-sm font-medium text-accent'>
+                    UI/UX Designer · Product Designer
+                  </p>
                 </div>
-
-                {/* Decorative gradient overlay */}
-                <div className='absolute inset-0 bg-linear-to-t from-white/30 to-transparent' />
-              </div>
-
-              {/* Floating decorations */}
-              <div className='absolute -top-6 -right-6 animate-float-delayed'>
-                <Clay3DIcon
-                  gradient='mint'
-                  size='lg'
-                >
-                  <span className='text-2xl'>✨</span>
-                </Clay3DIcon>
-              </div>
-              <div className='absolute -bottom-4 -left-4 animate-float-slow'>
-                <Clay3DIcon
-                  gradient='peach'
-                  size='md'
-                >
-                  <span className='text-xl'>💜</span>
-                </Clay3DIcon>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Content */}
-          <div className='space-y-8'>
-            <ScrollReveal animation='fade-up'>
-              <span className='inline-block px-4 py-2 rounded-full bg-accent-primary/10 text-accent-primary font-medium text-sm mb-4'>
-                About Me
-              </span>
-              <h2 className='heading-lg mb-6'>
-                Designing with{' '}
-                <span className='bg-linear-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent'>
-                  Purpose & Empathy
-                </span>
-              </h2>
-            </ScrollReveal>
-
-            <ScrollReveal
-              animation='fade-up'
-              delay={100}
-            >
-              <p className='text-lg text-muted leading-relaxed'>
-                Hi! I&apos;m Griselda Putri Cahyaningtyas, a passionate UI/UX
-                designer with experience crafting digital products that people
-                love to use. I believe that great design starts with
-                understanding users deeply and translating their needs into
-                intuitive, delightful experiences.
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal
-              animation='fade-up'
-              delay={200}
-            >
-              <p className='text-muted leading-relaxed'>
-                My approach combines strategic thinking with creative
-                exploration. I thrive on solving complex problems and
-                collaborating with teams to bring ideas to life. When I&apos;m
-                not designing, you&apos;ll find me exploring new design trends,
-                mentoring aspiring designers, or enjoying a good cup of coffee.
-              </p>
-            </ScrollReveal>
-
-            {/* Skills */}
-            <ScrollReveal
-              animation='fade-up'
-              delay={300}
-            >
-              <div className='space-y-4'>
-                <h3 className='font-semibold text-lg'>Skills & Expertise</h3>
-                <div className='grid grid-cols-2 sm:grid-cols-3 gap-4'>
-                  {skills.map((skill, index) => (
-                    <div
-                      key={skill.name}
-                      className='flex items-center gap-3 p-3 rounded-sm bg-white/50 hover:bg-white/80 transition-all hover:shadow-md'
-                      style={{ animationDelay: `${index * 50}ms` }}
-                    >
-                      <Clay3DIcon
-                        gradient={skill.gradient}
-                        size='sm'
-                      >
-                        <span className='text-sm'>{skill.icon}</span>
-                      </Clay3DIcon>
-                      <span className='font-medium text-sm'>{skill.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* Tools */}
-            <ScrollReveal
-              animation='fade-up'
-              delay={400}
-            >
-              <div className='space-y-3'>
-                <h3 className='font-semibold text-lg'>Tools I Use</h3>
-                <div className='flex flex-wrap gap-2'>
-                  {tools.map((tool) => (
+                <p className='body-base text-text-muted'>
+                  I&apos;m a passionate UI/UX designer who believes that great
+                  design starts with understanding people deeply. I transform
+                  complex user challenges into intuitive, delightful experiences
+                  — always grounding my decisions in research and data.
+                </p>
+                <p className='body-base text-text-muted'>
+                  When I&apos;m not designing, you&apos;ll find me exploring
+                  design trends, sharing knowledge with aspiring designers, or
+                  brewing the perfect cup of coffee.
+                </p>
+                {/* Tags */}
+                <div className='flex flex-wrap gap-2 pt-1'>
+                  {[
+                    'Empathy-Driven',
+                    'Detail-Oriented',
+                    'Collaborative',
+                    'Data-Informed',
+                  ].map((tag) => (
                     <span
-                      key={tool}
-                      className='px-4 py-2 rounded-full bg-accent-primary/10 text-sm font-medium hover:bg-accent-primary/20 transition-colors cursor-default'
+                      key={tag}
+                      className='chip chip-accent text-xs'
                     >
-                      {tool}
+                      {tag}
                     </span>
                   ))}
                 </div>
               </div>
-            </ScrollReveal>
-          </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Card 2: Quick stats (tall card on right) */}
+          <ScrollReveal
+            animation='slide-right'
+            className='md:col-span-2 lg:col-span-1'
+          >
+            <div className='card card-hover h-full p-6 md:p-8 flex flex-col justify-between min-h-[200px]'>
+              <div>
+                <span className='label text-accent mb-4 block'>Experience</span>
+                <div className='space-y-5'>
+                  {highlights.map((item) => (
+                    <div
+                      key={item.label}
+                      className='flex items-start gap-3'
+                    >
+                      <span
+                        className='text-4xl font-bold text-gradient leading-none shrink-0 pt-0.5'
+                        style={{ fontFamily: 'var(--font-playfair)' }}
+                      >
+                        {item.number}
+                      </span>
+                      <span className='text-sm text-text-muted leading-snug whitespace-pre-line font-medium'>
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className='mt-6 pt-5 border-t border-(--border-light)'>
+                <p className='text-xs text-text-muted italic'>
+                  &quot;Great design is invisible — it just works.&quot;
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Card 3: Skills */}
+          <ScrollReveal
+            animation='fade-up'
+            delay={100}
+            className='md:col-span-2 lg:col-span-2'
+          >
+            <div className='card card-hover p-6 md:p-8'>
+              <span className='label text-accent mb-5 block'>
+                Skills & Expertise
+              </span>
+              <div className='grid grid-cols-2 sm:grid-cols-3 gap-3'>
+                {skills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl border ${skill.color} transition-all hover:scale-[1.02] hover:shadow-sm cursor-default`}
+                  >
+                    <span className='text-base font-bold opacity-80 shrink-0'>
+                      {skill.icon}
+                    </span>
+                    <span className='text-sm font-semibold'>{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Card 4: Tools */}
+          <ScrollReveal
+            animation='fade-up'
+            delay={200}
+          >
+            <div className='card card-hover p-6 md:p-8 h-full'>
+              <span className='label text-accent mb-5 block'>Tools I Use</span>
+              <div className='flex flex-wrap gap-2'>
+                {tools.map((tool) => (
+                  <span
+                    key={tool.name}
+                    className='chip text-xs font-semibold hover:scale-[1.03] transition-transform cursor-default'
+                    style={{
+                      borderLeftColor: tool.color,
+                      borderLeftWidth: '3px',
+                    }}
+                  >
+                    {tool.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

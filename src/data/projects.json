@@ -1,1 +1,77 @@
-[]
+[
+  {
+    "title": "Lowongan PRT",
+    "category": [
+      "Mobile App",
+      "Web Application",
+      "Branding",
+      "UI/UX Design"
+    ],
+    "description": "Helping domestic workers  find trusted employers and secure futures through professional digital solutions.",
+    "thumbnail": "/projects/1771342067703-LowonganPRT-1.png",
+    "color": "from-pastel-sky to-pastel-lavender",
+    "externalUrl": "https://www.figma.com/design/jJKmuYsjkRt0eT2lNbZVf5/Portfolio?node-id=1-5132&p=f&t=E88Nmk3mBWd7RHM2-11",
+    "id": "1771342082662",
+    "slug": "lowongan-prt"
+  },
+  {
+    "title": "Valove",
+    "category": [
+      "Mobile App",
+      "Web Application",
+      "Branding",
+      "UI/UX Design"
+    ],
+    "description": "Premium website design for an exclusive home service brand with an elegant, professional, and trust-driven approach.",
+    "thumbnail": "/projects/1771342221648-Valove-1.png",
+    "color": "from-pastel-cream to-pastel-mint",
+    "externalUrl": "https://www.figma.com/design/jJKmuYsjkRt0eT2lNbZVf5/Portfolio?node-id=0-1&p=f&t=E88Nmk3mBWd7RHM2-11",
+    "id": "1771342227995",
+    "slug": "valove"
+  },
+  {
+    "title": "Nexus",
+    "category": [
+      "Mobile App",
+      "Web Application",
+      "Branding",
+      "UI/UX Design"
+    ],
+    "description": "A modern and elegant website concept designed for Nexus The Institute — an education & professional training brand with a global vision. Built to highlight credibility, career outcomes, and a premium learning experience.",
+    "thumbnail": "/projects/1771342312219-Nexus-2.png",
+    "color": "from-pastel-sky to-pastel-lavender",
+    "externalUrl": "https://www.figma.com/design/jJKmuYsjkRt0eT2lNbZVf5/Portfolio?node-id=10-730&p=f&t=E88Nmk3mBWd7RHM2-11",
+    "id": "1771342321570",
+    "slug": "nexus"
+  },
+  {
+    "title": "VTC Group",
+    "category": [
+      "Mobile App",
+      "Web Application",
+      "Branding",
+      "UI/UX Design"
+    ],
+    "description": "A high-end website concept for a professional workforce management group, designed to convey trust, credibility, and premium service quality.",
+    "thumbnail": "/projects/1771342439658-VTCG-4.png",
+    "color": "from-pastel-peach to-pastel-cream",
+    "externalUrl": "https://www.figma.com/design/jJKmuYsjkRt0eT2lNbZVf5/Portfolio?node-id=1-12484&p=f&t=E88Nmk3mBWd7RHM2-11",
+    "id": "1771342450035",
+    "slug": "vtc-group"
+  },
+  {
+    "title": "PNPRO",
+    "category": [
+      "Mobile App",
+      "Web Application",
+      "Branding",
+      "UI/UX Design"
+    ],
+    "description": "Designing warm, trust-driven digital experiences for professional family care services — crafted to build credibility, connection, and long-term trust with modern families.",
+    "thumbnail": "/projects/1771342523671-PNPRO-3.png",
+    "color": "from-pastel-mint to-pastel-peach",
+    "externalUrl": "https://www.figma.com/design/jJKmuYsjkRt0eT2lNbZVf5/Portfolio?node-id=34-2153&p=f&t=E88Nmk3mBWd7RHM2-11",
+    "id": "1771342557098",
+    "slug": "pnpro"
+  }
+]

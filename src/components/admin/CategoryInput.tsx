@@ -91,7 +91,7 @@ export default function CategoryInput({
             onChange={(e) => setCustomCategory(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Enter custom category"
-            className="flex-1 px-4 py-2 rounded-lg border border-foreground/20 bg-background focus:border-foreground/40 focus:outline-none transition-colors"
+            className="clay-input flex-1"
           />
           <button
             type="button"

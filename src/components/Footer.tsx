@@ -1,83 +1,96 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-const footerLinks = [
-  { label: 'Home', href: '/' },
+const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
+  { label: 'Process', href: '#process' },
   { label: 'Contact', href: '#contact' },
+];
+
+const socialLinks = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/griselda-putri/' },
 ];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className='bg-foreground text-white py-16'>
+    <footer
+      className='bg-bg-dark border-t border-white/5 section-py'
+      aria-label='Footer'
+    >
       <div className='container'>
-        <div className='grid md:grid-cols-3 gap-12 mb-12'>
+        {/* Top row */}
+        <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-8 pb-8 border-b border-white/5'>
           {/* Brand */}
-          <div className='space-y-4'>
+          <div className='flex flex-col gap-3 max-w-xs'>
             <Link
               href='/'
-              className='flex items-center gap-2'
+              className='flex items-center gap-2.5 group w-fit'
+              aria-label='Griselda — Home'
             >
-              <Image
-                src='/logo.png'
-                alt='Griselda Logo'
-                width={36}
-                height={36}
-                className='rounded-lg'
-              />
-              <span className='text-2xl font-bold font-serif'>
-                Griselda<span className='text-accent-primary'>.</span>
+              <div className='w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-sm shrink-0'>
+                <span
+                  className='text-white font-bold text-sm'
+                  style={{ fontFamily: 'var(--font-playfair)' }}
+                >
+                  G
+                </span>
+              </div>
+              <span
+                className='text-lg font-bold text-text-light group-hover:text-accent-light transition-colors duration-200'
+                style={{ fontFamily: 'var(--font-playfair)' }}
+              >
+                Griselda<span className='text-accent'>.</span>
               </span>
             </Link>
-            <p className='text-gray-400 max-w-xs'>
+            <p className='text-sm text-text-light-muted leading-relaxed'>
               Crafting intuitive digital experiences through thoughtful UI/UX
               design.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div className='space-y-4'>
-            <h3 className='font-semibold text-lg'>Quick Links</h3>
-            <nav className='flex flex-col gap-2'>
-              {footerLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className='text-gray-400 hover:text-white transition-colors'
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Contact */}
-          <div className='space-y-4'>
-            <h3 className='font-semibold text-lg'>Get in Touch</h3>
-            <div className='space-y-2'>
-              <a
-                href='mailto:griselda@designer.com'
-                className='block text-gray-400 hover:text-accent-primary transition-colors'
+          {/* Navigation */}
+          <nav
+            className='flex flex-wrap gap-x-8 gap-y-2'
+            aria-label='Footer navigation'
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className='text-sm text-text-light-muted hover:text-text-light transition-colors duration-200'
               >
-                griselda@designer.com
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Social */}
+          <div className='flex items-center gap-4'>
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-sm text-text-light-muted hover:text-accent-light transition-colors duration-200'
+                aria-label={`${link.label} — opens in new tab`}
+              >
+                {link.label}
               </a>
-              <p className='text-gray-400'>
-                Available for freelance work and collaborations.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className='pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4'>
-          <p className='text-gray-400 text-sm'>
-            © {currentYear} Griselda Putri. All rights reserved.
+        {/* Bottom row */}
+        <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3'>
+          <p className='text-xs text-text-light-muted'>
+            © {currentYear} Griselda Putri Cahyaningtyas. All rights reserved.
           </p>
-          <p className='text-gray-400 text-sm'>
-            Designed with 💜 and lots of coffee
+          <p className='text-xs text-text-light-muted'>
+            Designed & built with <span className='text-accent-light'>♥</span>{' '}
+            using Next.js & Tailwind CSS
           </p>
         </div>
       </div>
