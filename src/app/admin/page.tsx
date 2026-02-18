@@ -162,7 +162,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className='max-w-7xl mx-auto px-6 py-8'>
+      <div className='max-w-7xl mx-auto px-4 py-8'>
         {error && (
           <div className='card p-12 text-center animate-fade-in-up'>
             <div className='text-5xl mb-4'>⚠️</div>

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function NewProjectPage() {
   return (
-    <div className='min-h-screen bg-bg-subtle p-8'>
+    <div className='min-h-screen bg-bg-subtle px-4 py-8 md:px-8'>
       <div className='max-w-4xl mx-auto'>
         <div className='mb-8 animate-fade-in-up flex items-start justify-between'>
           <div>
