@@ -42,9 +42,7 @@ export default function ContactSection() {
         <div className='max-w-2xl mx-auto space-y-8'>
           {/* Header */}
           <ScrollReveal animation='fade-up'>
-            <span className='badge mb-4 inline-flex'>
-              Get In Touch
-            </span>
+            <span className='badge mb-4 inline-flex'>Get In Touch</span>
             <h2 className='heading-xl text-text-primary mb-4'>
               Let&apos;s build something{' '}
               <span className='text-gradient'>great together</span>
@@ -63,7 +61,7 @@ export default function ContactSection() {
             <div className='space-y-4'>
               {/* Email */}
               <a
-                href='mailto:boosycen@gmail.com'
+                href='mailto:putrigriseldac@gmail.com'
                 className='group flex items-center gap-4 p-4 rounded-2xl border border-(--border-light) dark:border-white/8 hover:border-accent/30 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300'
               >
                 <div className='w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center shrink-0 group-hover:bg-accent/25 transition-colors'>
@@ -94,7 +92,7 @@ export default function ContactSection() {
                     Email
                   </p>
                   <span className='text-text-primary font-medium text-sm group-hover:text-accent transition-colors'>
-                    boosycen@gmail.com
+                    putrigriseldac@gmail.com
                   </span>
                 </div>
               </a>

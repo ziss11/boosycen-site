@@ -1,9 +1,9 @@
 'use client';
 
+import ThemeToggle from '@/components/ui/ThemeToggle';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const navLinks = [
   { href: '#about', label: 'About' },
@@ -83,28 +83,28 @@ export default function Header() {
           {/* Mobile: Theme toggle + Hamburger */}
           <div className='md:hidden flex items-center gap-1'>
             <ThemeToggle className='text-text-muted' />
-          <button
-            className='flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors'
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMobileMenuOpen}
-          >
-            <span
-              className={`block w-5 h-0.5 bg-text-primary rounded-full transition-all duration-300 ${
-                isMobileMenuOpen ? 'rotate-45 translate-y-[3px]' : ''
-              }`}
-            />
-            <span
-              className={`block w-5 h-0.5 bg-text-primary rounded-full transition-all duration-300 my-[3px] ${
-                isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''
-              }`}
-            />
-            <span
-              className={`block w-5 h-0.5 bg-text-primary rounded-full transition-all duration-300 ${
-                isMobileMenuOpen ? '-rotate-45 -translate-y-[6px]' : ''
-              }`}
-            />
-          </button>
+            <button
+              className='flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors'
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+            >
+              <span
+                className={`block w-5 h-0.5 bg-text-primary rounded-full transition-all duration-300 ${
+                  isMobileMenuOpen ? 'rotate-45 translate-y-[3px]' : ''
+                }`}
+              />
+              <span
+                className={`block w-5 h-0.5 bg-text-primary rounded-full transition-all duration-300 my-[3px] ${
+                  isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''
+                }`}
+              />
+              <span
+                className={`block w-5 h-0.5 bg-text-primary rounded-full transition-all duration-300 ${
+                  isMobileMenuOpen ? '-rotate-45 -translate-y-[6px]' : ''
+                }`}
+              />
+            </button>
           </div>
         </div>
       </header>
@@ -151,11 +151,11 @@ export default function Header() {
 
           <div className='mt-8 pt-8 border-t border-white/10 w-full max-w-xs flex flex-col items-center gap-4'>
             <a
-              href='mailto:boosycen@gmail.com'
+              href='mailto:putrigriseldac@gmail.com'
               className='text-text-light-muted text-sm hover:text-accent-light transition-colors'
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              boosycen@gmail.com
+              putrigriseldac@gmail.com
             </a>
           </div>
         </div>
