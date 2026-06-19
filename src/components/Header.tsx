@@ -12,7 +12,13 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  email?: string;
+}
+
+export default function Header({
+  email = 'putrigriseldac@gmail.com',
+}: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -151,11 +157,11 @@ export default function Header() {
 
           <div className='mt-8 pt-8 border-t border-white/10 w-full max-w-xs flex flex-col items-center gap-4'>
             <a
-              href='mailto:putrigriseldac@gmail.com'
+              href={`mailto:${email}`}
               className='text-text-light-muted text-sm hover:text-accent-light transition-colors'
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              putrigriseldac@gmail.com
+              {email}
             </a>
           </div>
         </div>

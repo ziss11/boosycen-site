@@ -8,12 +8,16 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
-const socialLinks = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/griselda-putri/' },
-];
+interface FooterProps {
+  linkedinUrl?: string;
+}
 
-export default function Footer() {
+export default function Footer({
+  linkedinUrl = 'https://www.linkedin.com/in/griselda-putri/',
+}: FooterProps) {
   const currentYear = new Date().getFullYear();
+
+  const socialLinks = [{ label: 'LinkedIn', href: linkedinUrl }];
 
   return (
     <footer

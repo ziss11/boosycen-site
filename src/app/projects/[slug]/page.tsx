@@ -6,6 +6,7 @@ import Clay3DIcon, {
 } from '@/components/ui/Clay3DIcon';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { projectService } from '@/lib/project-service';
+import { settingsService } from '@/lib/settings-service';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -39,7 +40,10 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = await projectService.getBySlug(slug);
+  const [project, settings] = await Promise.all([
+    projectService.getBySlug(slug),
+    settingsService.get(),
+  ]);
 
   if (!project || !project.caseStudy) {
     notFound();
@@ -49,7 +53,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <>
-      <Header />
+      <Header email={settings.email} />
       <main className='pt-24'>
         {/* Hero Section */}
         <section className={`py-20 bg-linear-br ${project.color}`}>
@@ -268,7 +272,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer linkedinUrl={settings.linkedinUrl} />
     </>
   );
 }

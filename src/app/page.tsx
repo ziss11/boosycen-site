@@ -6,24 +6,31 @@ import HeroSection from '@/components/sections/HeroSection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import WorkSection from '@/components/sections/WorkSection';
 import { projectService } from '@/lib/project-service';
+import { settingsService } from '@/lib/settings-service';
 
-// Project data lives in Vercel Blob (mutable via admin), so always read fresh
+// Project and settings data live in Vercel Blob (mutable via admin), so always read fresh
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const projects = await projectService.getAll();
+  const [projects, settings] = await Promise.all([
+    projectService.getAll(),
+    settingsService.get(),
+  ]);
 
   return (
     <>
-      <Header />
+      <Header email={settings.email} />
       <main>
         <HeroSection />
         <AboutSection />
         <WorkSection projects={projects} />
         <ProcessSection />
-        <ContactSection />
+        <ContactSection
+          email={settings.email}
+          linkedinUrl={settings.linkedinUrl}
+        />
       </main>
-      <Footer />
+      <Footer linkedinUrl={settings.linkedinUrl} />
     </>
   );
 }

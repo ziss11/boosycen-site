@@ -2,26 +2,34 @@
 
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
-const socialLinks = [
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/griselda-putri/',
-    description: "Let's connect professionally",
-    icon: (
-      <svg
-        width='20'
-        height='20'
-        viewBox='0 0 20 20'
-        fill='currentColor'
-        aria-hidden='true'
-      >
-        <path d='M16.667 2.5H3.333A.833.833 0 002.5 3.333v13.334a.833.833 0 00.833.833h13.334a.833.833 0 00.833-.833V3.333a.833.833 0 00-.833-.833zM6.667 14.167H4.583V8.333h2.084v5.834zM5.625 7.5a1.042 1.042 0 110-2.083 1.042 1.042 0 010 2.083zM15.417 14.167h-2.084v-2.917c0-.775-.014-1.772-1.08-1.772-1.08 0-1.245.843-1.245 1.714v2.975H8.924V8.333h2v.792h.028c.277-.525.955-1.08 1.966-1.08 2.1 0 2.49 1.383 2.49 3.18v2.942h.009z' />
-      </svg>
-    ),
-  },
-];
+interface ContactSectionProps {
+  email?: string;
+  linkedinUrl?: string;
+}
 
-export default function ContactSection() {
+export default function ContactSection({
+  email = 'putrigriseldac@gmail.com',
+  linkedinUrl = 'https://www.linkedin.com/in/griselda-putri/',
+}: ContactSectionProps) {
+  const socialLinks = [
+    {
+      name: 'LinkedIn',
+      href: linkedinUrl,
+      description: "Let's connect professionally",
+      icon: (
+        <svg
+          width='20'
+          height='20'
+          viewBox='0 0 20 20'
+          fill='currentColor'
+          aria-hidden='true'
+        >
+          <path d='M16.667 2.5H3.333A.833.833 0 002.5 3.333v13.334a.833.833 0 00.833.833h13.334a.833.833 0 00.833-.833V3.333a.833.833 0 00-.833-.833zM6.667 14.167H4.583V8.333h2.084v5.834zM5.625 7.5a1.042 1.042 0 110-2.083 1.042 1.042 0 010 2.083zM15.417 14.167h-2.084v-2.917c0-.775-.014-1.772-1.08-1.772-1.08 0-1.245.843-1.245 1.714v2.975H8.924V8.333h2v.792h.028c.277-.525.955-1.08 1.966-1.08 2.1 0 2.49 1.383 2.49 3.18v2.942h.009z' />
+        </svg>
+      ),
+    },
+  ];
+
   return (
     <section
       id='contact'
@@ -61,7 +69,7 @@ export default function ContactSection() {
             <div className='space-y-4'>
               {/* Email */}
               <a
-                href='mailto:putrigriseldac@gmail.com'
+                href={`mailto:${email}`}
                 className='group flex items-center gap-4 p-4 rounded-2xl border border-(--border-light) dark:border-white/8 hover:border-accent/30 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300'
               >
                 <div className='w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center shrink-0 group-hover:bg-accent/25 transition-colors'>
@@ -92,7 +100,7 @@ export default function ContactSection() {
                     Email
                   </p>
                   <span className='text-text-primary font-medium text-sm group-hover:text-accent transition-colors'>
-                    putrigriseldac@gmail.com
+                    {email}
                   </span>
                 </div>
               </a>

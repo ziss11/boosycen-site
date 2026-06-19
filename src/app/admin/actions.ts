@@ -1,6 +1,7 @@
 'use server';
 
 import { Project, projectService } from '@/lib/project-service';
+import { Settings, settingsService } from '@/lib/settings-service';
 import { revalidatePath } from 'next/cache';
 
 export async function deleteProject(id: string) {
@@ -47,5 +48,18 @@ export async function updateProject(id: string, data: Partial<Project>) {
   } catch (error) {
     console.error('Error updating project:', error);
     return { success: false, message: 'Failed to update project' };
+  }
+}
+
+export async function updateSettings(data: Partial<Settings>) {
+  try {
+    const settings = await settingsService.update(data);
+    revalidatePath('/');
+    revalidatePath('/admin');
+    revalidatePath('/admin/settings');
+    return { success: true, settings };
+  } catch (error) {
+    console.error('Error updating settings:', error);
+    return { success: false, message: 'Failed to save settings' };
   }
 }
