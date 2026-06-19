@@ -1,3 +1,4 @@
+import { put } from '@vercel/blob';
 import { mkdir, writeFile } from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
@@ -65,20 +66,28 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Ensure the projects directory exists
-    const projectsDir = path.join(process.cwd(), 'public', 'projects');
-    try {
-      await mkdir(projectsDir, { recursive: true });
-    } catch {
-      // Directory might already exist, which is fine
+    let publicUrl: string;
+
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      // Production (Vercel): filesystem is read-only, upload to Vercel Blob
+      const blob = await put(`projects/${filename}`, buffer, {
+        access: 'public',
+        contentType: file.type,
+      });
+      publicUrl = blob.url;
+    } else {
+      // Local dev: write to public/projects directory
+      const projectsDir = path.join(process.cwd(), 'public', 'projects');
+      try {
+        await mkdir(projectsDir, { recursive: true });
+      } catch {
+        // Directory might already exist, which is fine
+      }
+
+      const uploadPath = path.join(projectsDir, filename);
+      await writeFile(uploadPath, buffer);
+      publicUrl = `/projects/${filename}`;
     }
-
-    // Save to public/projects directory
-    const uploadPath = path.join(projectsDir, filename);
-    await writeFile(uploadPath, buffer);
-
-    // Return the public URL path
-    const publicUrl = `/projects/${filename}`;
 
     return NextResponse.json(
       {

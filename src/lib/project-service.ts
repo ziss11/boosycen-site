@@ -1,3 +1,4 @@
+import { list, put } from '@vercel/blob';
 import fs from 'fs/promises';
 import path from 'path';
 import { generateColorGradient } from './color-generator';
@@ -24,35 +25,61 @@ export interface Project {
 }
 
 const dataFilePath = path.join(process.cwd(), 'src/data/projects.json');
+// Stable pathname for the projects data blob on Vercel Blob
+const DATA_BLOB_PATH = 'data/projects.json';
+
+// Parse + validate raw JSON into a clean Project[] (shared by both sources)
+function parseProjects(data: string): Project[] {
+  const parsed = JSON.parse(data);
+
+  // Validate it's an array
+  if (!Array.isArray(parsed)) {
+    console.error('Projects file is not an array');
+    return [];
+  }
+
+  // Validate each project has required fields
+  const validProjects = parsed.filter((p: unknown) => {
+    if (typeof p !== 'object' || p === null) return false;
+    const project = p as Partial<Project>;
+    return (
+      typeof project.id === 'string' &&
+      typeof project.title === 'string' &&
+      typeof project.slug === 'string'
+    );
+  });
+
+  if (validProjects.length !== parsed.length) {
+    console.warn(`Filtered out ${parsed.length - validProjects.length} invalid projects`);
+  }
+
+  return validProjects as Project[];
+}
 
 // Helper to read projects
 async function readProjects(): Promise<Project[]> {
   try {
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      // Production (Vercel): read from Vercel Blob
+      const { blobs } = await list({ prefix: DATA_BLOB_PATH });
+      const match = blobs.find((b) => b.pathname === DATA_BLOB_PATH);
+
+      if (match) {
+        const res = await fetch(match.url, { cache: 'no-store' });
+        if (res.ok) {
+          return parseProjects(await res.text());
+        }
+        console.error('Failed to fetch projects blob:', res.status);
+      }
+
+      // Blob not seeded yet (first deploy): fall back to bundled file (read-only)
+      const seed = await fs.readFile(dataFilePath, 'utf8');
+      return parseProjects(seed);
+    }
+
+    // Local dev: read from filesystem
     const data = await fs.readFile(dataFilePath, 'utf8');
-    const parsed = JSON.parse(data);
-
-    // Validate it's an array
-    if (!Array.isArray(parsed)) {
-      console.error('Projects file is not an array');
-      return [];
-    }
-
-    // Validate each project has required fields
-    const validProjects = parsed.filter((p: unknown) => {
-      if (typeof p !== 'object' || p === null) return false;
-      const project = p as Partial<Project>;
-      return (
-        typeof project.id === 'string' &&
-        typeof project.title === 'string' &&
-        typeof project.slug === 'string'
-      );
-    });
-
-    if (validProjects.length !== parsed.length) {
-      console.warn(`Filtered out ${parsed.length - validProjects.length} invalid projects`);
-    }
-
-    return validProjects as Project[];
+    return parseProjects(data);
   } catch (error) {
     console.error('Error reading projects:', error);
     return [];
@@ -62,6 +89,18 @@ async function readProjects(): Promise<Project[]> {
 // Helper to write projects
 async function writeProjects(projects: Project[]): Promise<void> {
   try {
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      // Production (Vercel): filesystem is read-only, write to Vercel Blob
+      await put(DATA_BLOB_PATH, JSON.stringify(projects, null, 2), {
+        access: 'public',
+        contentType: 'application/json',
+        addRandomSuffix: false,
+        allowOverwrite: true,
+      });
+      return;
+    }
+
+    // Local dev: write to filesystem
     await fs.writeFile(dataFilePath, JSON.stringify(projects, null, 2), 'utf8');
   } catch (error) {
     console.error('Error writing projects:', error);
