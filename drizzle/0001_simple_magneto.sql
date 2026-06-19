@@ -1,0 +1,1 @@
+ALTER TABLE `settings` ADD `resume_url` text DEFAULT '' NOT NULL;

@@ -6,12 +6,14 @@ import { settings } from '@/db/schema';
 export interface Settings {
   email: string;
   linkedinUrl: string;
+  resumeUrl: string;
 }
 
 // Defaults double as a safety net when the row is missing
 export const DEFAULT_SETTINGS: Settings = {
   email: 'putrigriseldac@gmail.com',
   linkedinUrl: 'https://www.linkedin.com/in/griselda-putri/',
+  resumeUrl: '',
 };
 
 // Single-row settings table keyed by id = 1
@@ -30,6 +32,7 @@ export const settingsService = {
     return {
       email: row.email || DEFAULT_SETTINGS.email,
       linkedinUrl: row.linkedinUrl || DEFAULT_SETTINGS.linkedinUrl,
+      resumeUrl: row.resumeUrl ?? '',
     };
   },
 
@@ -42,7 +45,11 @@ export const settingsService = {
       .values({ id: SETTINGS_ID, ...next })
       .onConflictDoUpdate({
         target: settings.id,
-        set: { email: next.email, linkedinUrl: next.linkedinUrl },
+        set: {
+          email: next.email,
+          linkedinUrl: next.linkedinUrl,
+          resumeUrl: next.resumeUrl,
+        },
       });
 
     return next;

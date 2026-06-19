@@ -3,6 +3,7 @@
 import { Settings } from '@/lib/settings-service';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import ResumeUpload from './ResumeUpload';
 
 interface SettingsFormProps {
   initialData: Settings;
@@ -23,6 +24,7 @@ export default function SettingsForm({
   const [formData, setFormData] = useState<Settings>({
     email: initialData.email || '',
     linkedinUrl: initialData.linkedinUrl || '',
+    resumeUrl: initialData.resumeUrl || '',
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,7 +47,11 @@ export default function SettingsForm({
 
     setLoading(true);
     try {
-      const result = await action({ email, linkedinUrl });
+      const result = await action({
+        email,
+        linkedinUrl,
+        resumeUrl: formData.resumeUrl,
+      });
 
       if (result.success) {
         setSuccess(true);
@@ -149,6 +155,18 @@ export default function SettingsForm({
             />
             <p className='text-xs text-muted mt-1.5'>
               Linked from the footer and contact section
+            </p>
+          </div>
+
+          <div>
+            <ResumeUpload
+              value={formData.resumeUrl}
+              onChange={(url) =>
+                setFormData((prev) => ({ ...prev, resumeUrl: url }))
+              }
+            />
+            <p className='text-xs text-muted mt-1.5'>
+              When set, a “Download CV” button appears on the landing page
             </p>
           </div>
         </div>

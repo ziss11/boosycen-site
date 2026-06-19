@@ -28,4 +28,5 @@ export const settings = sqliteTable('settings', {
   id: integer('id').primaryKey(),
   email: text('email').notNull(),
   linkedinUrl: text('linkedin_url').notNull(),
+  resumeUrl: text('resume_url').notNull().default(''),
 });

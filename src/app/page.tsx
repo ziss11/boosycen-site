@@ -21,7 +21,7 @@ export default async function Home() {
     <>
       <Header email={settings.email} />
       <main>
-        <HeroSection />
+        <HeroSection resumeUrl={settings.resumeUrl} />
         <AboutSection />
         <WorkSection projects={projects} />
         <ProcessSection />

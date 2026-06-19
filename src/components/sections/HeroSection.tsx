@@ -11,7 +11,11 @@ const phrases = [
   'build trust',
 ];
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  resumeUrl?: string;
+}
+
+export default function HeroSection({ resumeUrl }: HeroSectionProps) {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
 
@@ -132,6 +136,31 @@ export default function HeroSection() {
               >
                 Let&apos;s Connect
               </Link>
+              {resumeUrl && (
+                <a
+                  href={resumeUrl}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='btn-secondary'
+                >
+                  Download CV
+                  <svg
+                    width='16'
+                    height='16'
+                    viewBox='0 0 16 16'
+                    fill='none'
+                    aria-hidden='true'
+                  >
+                    <path
+                      d='M8 2v8m0 0L5 7m3 3l3-3M3 13h10'
+                      stroke='currentColor'
+                      strokeWidth='1.5'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </a>
+              )}
             </div>
           </div>
 

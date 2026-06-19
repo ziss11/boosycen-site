@@ -8,6 +8,13 @@
       "when": 1781873199860,
       "tag": "0000_free_betty_ross",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1781874036653,
+      "tag": "0001_simple_magneto",
+      "breakpoints": true
     }
   ]
 }
