@@ -73,5 +73,19 @@
     "externalUrl": "https://www.figma.com/design/jJKmuYsjkRt0eT2lNbZVf5/Portfolio?node-id=34-2153&p=f&t=E88Nmk3mBWd7RHM2-11",
     "id": "1771342557098",
     "slug": "pnpro"
+  },
+  {
+    "title": "VTC Region",
+    "category": [
+      "Mobile App",
+      "Web Application",
+      "UI/UX Design"
+    ],
+    "description": "A responsive website featuring dedicated regional pages, local expert profiles, and an intuitive FAQ experience designed to build trust and improve user engagement.",
+    "thumbnail": "https://qyf374mq339edtp7.public.blob.vercel-storage.com/projects/1781871650152-Thumbnail-%281%29.png",
+    "color": "from-pastel-mint to-pastel-sky",
+    "externalUrl": "https://www.figma.com/design/yam5gmLkAmcjuVhBeQ0UrP/VTCRegion?node-id=6-272&t=waUXfKLH0QOCDX97-1",
+    "id": "1781871702627",
+    "slug": "vtc-region"
   }
 ]
