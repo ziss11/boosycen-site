@@ -100,7 +100,11 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(
-      { error: 'Failed to upload file' },
+      {
+        error: 'Failed to upload file',
+        details: error instanceof Error ? error.message : String(error),
+        hasBlobToken: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      },
       { status: 500 },
     );
   }
