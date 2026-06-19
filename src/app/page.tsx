@@ -7,6 +7,9 @@ import ProcessSection from '@/components/sections/ProcessSection';
 import WorkSection from '@/components/sections/WorkSection';
 import { projectService } from '@/lib/project-service';
 
+// Project data lives in Vercel Blob (mutable via admin), so always read fresh
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const projects = await projectService.getAll();
 

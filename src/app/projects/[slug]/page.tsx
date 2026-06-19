@@ -13,6 +13,9 @@ interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
+// Project data lives in Vercel Blob (mutable via admin), so always read fresh
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
   const projects = await projectService.getAll();
   return projects.map((project) => ({
