@@ -111,7 +111,9 @@ async function writeProjects(projects: Project[]): Promise<void> {
 // Service methods
 export const projectService = {
   getAll: async (): Promise<Project[]> => {
-    return await readProjects();
+    const projects = await readProjects();
+    // Newest first: ids are Date.now() timestamps assigned on create
+    return [...projects].sort((a, b) => Number(b.id) - Number(a.id));
   },
 
   getById: async (id: string): Promise<Project | undefined> => {
